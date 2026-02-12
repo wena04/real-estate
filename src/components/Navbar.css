@@ -1,0 +1,101 @@
+/* ===== Navbar ===== */
+.custom-navbar {
+  padding: 20px 0;
+  transition: all var(--transition-smooth);
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.custom-navbar.navbar-scrolled {
+  background-color: rgba(15, 43, 36, 0.97);
+  padding: 12px 0;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Brand */
+.custom-navbar .navbar-brand {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: color var(--transition-fast);
+}
+
+.brand-text {
+  color: var(--color-text-white);
+}
+
+.brand-accent {
+  color: var(--color-accent);
+  font-weight: 400;
+}
+
+/* Nav Links */
+.nav-link-custom {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 18px !important;
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.nav-link-custom::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 18px;
+  right: 18px;
+  height: 1.5px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transition: transform var(--transition-smooth);
+  transform-origin: center;
+}
+
+.nav-link-custom:hover {
+  color: var(--color-text-white) !important;
+}
+
+.nav-link-custom:hover::after {
+  transform: scaleX(1);
+}
+
+/* Hamburger / Toggler */
+.custom-toggler {
+  border: none !important;
+  padding: 4px 8px;
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.custom-toggler:focus {
+  box-shadow: none !important;
+}
+
+/* Mobile Nav */
+@media (max-width: 991px) {
+  .custom-navbar {
+    background-color: rgba(15, 43, 36, 0.97);
+    padding: 12px 0;
+  }
+
+  .navbar-collapse {
+    padding: 16px 0;
+  }
+
+  .nav-link-custom {
+    padding: 10px 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-link-custom::after {
+    display: none;
+  }
+}
