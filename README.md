@@ -1,6 +1,6 @@
 # Westwood Homes — Real Estate Website
 
-A modern, single-page marketing website for **Westwood Homes**, a Bellevue-based custom home builder. Built with React, React Bootstrap, and custom CSS featuring a dark green luxury color scheme.
+A modern, single-page marketing website for **Westwood Homes**, a Bellevue-based custom home builder. Built with React, React Bootstrap, and custom CSS featuring a dark green luxury color scheme..
 
 ## Tech Stack
 
