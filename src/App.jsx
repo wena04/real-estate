@@ -1,41 +1,47 @@
-import { useEffect } from 'react';
+import { Navigate, Routes, Route } from 'react-router-dom';
 import NavigationBar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import Portfolio from './components/Portfolio';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import HomeownersUnlockPage from './pages/HomeownersUnlockPage';
+import HomeownersSellPage from './pages/HomeownersSellPage';
+import HomeownersFeasibilityPage from './pages/HomeownersFeasibilityPage';
+import ServicesDesignBuildPage from './pages/ServicesDesignBuildPage';
+import ServicesConsultingPage from './pages/ServicesConsultingPage';
+import ServicesCMPage from './pages/ServicesCMPage';
+import InvestorsJoinPage from './pages/InvestorsJoinPage';
+import InvestorsOverviewPage from './pages/InvestorsOverviewPage';
+import ProjectsPage from './pages/ProjectsPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import ContactPage from './pages/ContactPage';
 import './App.css';
 
 function App() {
-  useEffect(() => {
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    const elements = document.querySelectorAll('.fade-in-section');
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <div className="app">
       <NavigationBar />
-      <Hero />
-      <About />
-      <Services />
-      <Portfolio />
-      <Contact />
+      <main className="site-main">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+
+          <Route path="/homeowners/unlock-lot" element={<HomeownersUnlockPage />} />
+          <Route path="/homeowners/sell-home" element={<HomeownersSellPage />} />
+          <Route path="/homeowners/feasibility-review" element={<HomeownersFeasibilityPage />} />
+
+          <Route path="/services/design-build" element={<ServicesDesignBuildPage />} />
+          <Route path="/services/development-consulting" element={<ServicesConsultingPage />} />
+          <Route path="/services/construction-management" element={<ServicesCMPage />} />
+
+          <Route path="/investors/join" element={<InvestorsJoinPage />} />
+          <Route path="/investors/overview" element={<InvestorsOverviewPage />} />
+
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+
+          <Route path="/about" element={<Navigate to="/" replace />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </main>
       <Footer />
     </div>
   );

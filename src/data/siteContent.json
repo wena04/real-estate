@@ -1,0 +1,20 @@
+{
+  "brandName": "Westwood Homes",
+  "tagline": "Local team. Builder mindset. Developer discipline.",
+  "contact": {
+    "addressLine1": "1530 140th Ave NE",
+    "addressLine2": "Ste 117 Bellevue, WA 98005",
+    "addressFull": "1530 140th Ave NE, Ste 117, Bellevue, WA 98005",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=1530+140th+Ave+NE+Ste+117+Bellevue+WA+98005",
+    "phone": "(425) 426-9999",
+    "phoneHref": "+14254269999",
+    "email": "kevin@westwoodnw.com"
+  },
+  "heroVideo": "assets/video/home-hero-placeholder.mp4",
+  "heroVideoNote": "TODO: Replace with client approved hero video file in public/assets/video/",
+  "metrics": [
+    "100+ new construction units delivered",
+    "50+ doors under management (BTR)",
+    "Infill specialists: townhomes, cottages, ADUs"
+  ]
+}

@@ -1,0 +1,150 @@
+.filter-panel {
+  background: linear-gradient(180deg, #ffffff 0%, #f9fbfa 100%);
+  border: 1px solid #d8dfdc;
+  border-radius: 16px;
+  padding: 1.2rem;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 10px 24px rgba(20, 33, 29, 0.06);
+}
+
+.filter-head {
+  margin-bottom: 1rem;
+}
+
+.filter-head h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.2rem;
+}
+
+.filter-head p {
+  margin: 0;
+  font-size: 0.94rem;
+}
+
+.filter-row {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.filter-block + .filter-block {
+  margin-top: 1rem;
+}
+
+.filter-label {
+  margin-bottom: 0.4rem;
+}
+
+.filter-chip {
+  border: 1px solid #cfd8d3;
+  background: #fff;
+  color: #27322d;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.46rem 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+  border-color: #9fb2aa;
+  color: #17372e;
+  background: #f7fbf9;
+}
+
+.filter-chip.is-active {
+  color: #fff;
+  background: #23453c;
+  border-color: #23453c;
+  box-shadow: 0 8px 18px rgba(35, 69, 60, 0.24);
+}
+
+.filter-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.filter-reset-btn {
+  padding: 0.52rem 0.92rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.projects-map-head {
+  margin: 1rem 0 0.7rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #e2e9e5;
+}
+
+.projects-map-head h3 {
+  font-size: 1.15rem;
+  margin: 0 0 0.25rem;
+  color: #1a2824;
+}
+
+.projects-map-head p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #55645f;
+}
+
+.projects-results-meta {
+  color: #54605b;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.map-placeholder {
+  border: 1px dashed #c4cfca;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.project-result-card {
+  height: 100%;
+  border-radius: 14px;
+  transition: transform 0.2s ease;
+}
+
+.project-result-card.is-active {
+  transform: translateY(-2px);
+}
+
+.project-result-card.is-active .project-card {
+  border-color: #8fa79f;
+  box-shadow: 0 14px 28px rgba(16, 40, 31, 0.12);
+}
+
+.no-results-card {
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+.no-results-card p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .filter-panel {
+    padding: 0.85rem;
+  }
+
+  .filter-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .filter-reset-btn {
+    width: 100%;
+  }
+
+  .projects-map-head {
+    margin-top: 0.85rem;
+  }
+}

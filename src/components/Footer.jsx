@@ -1,85 +1,41 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import siteContent from '../data/siteContent.json';
 import './Footer.css';
 
-const FOOTER_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Contact', href: '#contact' },
-];
-
 function Footer() {
-  const handleScroll = (e, href) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const { contact } = siteContent;
 
   return (
-    <footer className="footer-section">
+    <footer className="site-footer">
       <Container>
-        <Row className="footer-main">
-          <Col lg={4} md={6} className="footer-brand-col">
-            <h3 className="footer-brand">
-              Westwood <span>Homes</span>
-            </h3>
-            <p className="footer-tagline">
-              Built local. Built with care. Built to last — creating places
-              where life unfolds.
-            </p>
-          </Col>
-
-          <Col lg={2} md={6} className="footer-links-col">
-            <h5 className="footer-heading">Navigate</h5>
-            <ul className="footer-links">
-              {FOOTER_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleScroll(e, link.href)}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+        <div className="footer-grid">
+          <div>
+            <h4>Westwood Homes</h4>
+            <p>Builder mindset. Developer discipline.</p>
+          </div>
+          <div>
+            <h5>Navigate</h5>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/projects">Projects</Link></li>
+              <li><Link to="/homeowners/feasibility-review">Feasibility Review</Link></li>
+              <li><Link to="/investors/join">Join Investor List</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
-          </Col>
-
-          <Col lg={3} md={6} className="footer-contact-col">
-            <h5 className="footer-heading">Contact</h5>
-            <ul className="footer-contact-list">
-              <li>1530 140th Ave NE, Ste 117</li>
-              <li>Bellevue, WA 98005</li>
-              <li>
-                <a href="mailto:cindy@westwoodnw.com">cindy@westwoodnw.com</a>
-              </li>
-            </ul>
-          </Col>
-
-          <Col lg={3} md={6} className="footer-cta-col">
-            <h5 className="footer-heading">Start a Project</h5>
-            <p className="footer-cta-text">
-              Ready to build your dream home? Let's talk.
+          </div>
+          <div>
+            <h5>Contact</h5>
+            <p>
+              <a href={contact.mapUrl} target="_blank" rel="noreferrer">
+                {contact.addressFull}
+              </a>
             </p>
-            <a
-              href="#contact"
-              className="btn-outline-custom footer-cta-btn"
-              onClick={(e) => handleScroll(e, '#contact')}
-            >
-              Get In Touch
-            </a>
-          </Col>
-        </Row>
-
-        <div className="footer-bottom">
-          <p>
-            &copy; {new Date().getFullYear()} Westwood Homes. All rights
-            reserved.
-          </p>
+            <p><a href={`tel:${contact.phoneHref}`}>{contact.phone}</a></p>
+            <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+          </div>
         </div>
+        <div className="footer-bottom">© {new Date().getFullYear()} Westwood Homes</div>
       </Container>
     </footer>
   );

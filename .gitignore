@@ -137,3 +137,23 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# macOS / local desktop files
+.DS_Store
+
+# Local source asset dumps (not app runtime assets)
+Westwood Project Photos/
+Westwood Project Photos.zip
+a0dc46da7bced8cd8b2c532400c57a13.mp4
+logo.jpg
+
+# Vercel local project metadata
+.vercel/
+
+# Defensive secret/certificate ignores
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer

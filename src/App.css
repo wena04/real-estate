@@ -1,4 +1,16 @@
-/* App-level styles */
 .app {
-  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-main {
+  flex: 1;
+  padding-top: 86px;
+}
+
+@media (max-width: 991px) {
+  .site-main {
+    padding-top: 78px;
+  }
 }

@@ -1,0 +1,110 @@
+[
+  {
+    "slug": "se-44th-pl-single-family",
+    "name": "SE 44th PL Single Family",
+    "lat": 47.5669,
+    "lng": -122.1652,
+    "city": "Bellevue",
+    "program": "Single Family",
+    "status": "Completed"
+  },
+  {
+    "slug": "se-44th-pl-residence-single-family",
+    "name": "SE 44th PL Residence Single Family",
+    "lat": 47.5668,
+    "lng": -122.1649,
+    "city": "Bellevue",
+    "program": "Single Family",
+    "status": "Completed"
+  },
+  {
+    "slug": "fairmount-ave-sw-dadu",
+    "name": "Fairmount Ave SW DADU",
+    "lat": 47.5765,
+    "lng": -122.383,
+    "city": "Seattle",
+    "program": "DADU",
+    "status": "Construction"
+  },
+  {
+    "slug": "mlk-jr-way-s-townhomes",
+    "name": "MLK Jr Way S Townhomes",
+    "lat": 47.5998,
+    "lng": -122.297,
+    "city": "Seattle",
+    "program": "Townhomes",
+    "status": "Completed"
+  },
+  {
+    "slug": "mlk-jr-way-s-townhomes-phase-2",
+    "name": "MLK Jr Way S Townhomes II",
+    "lat": 47.5984,
+    "lng": -122.2966,
+    "city": "Seattle",
+    "program": "Townhomes",
+    "status": "Construction"
+  },
+  {
+    "slug": "n-64th-st-townhomes",
+    "name": "N 64th St Townhomes",
+    "lat": 47.6754,
+    "lng": -122.3834,
+    "city": "Seattle",
+    "program": "Townhomes",
+    "status": "Completed"
+  },
+  {
+    "slug": "3rd-ave-nw-adu",
+    "name": "3rd Ave ADU",
+    "lat": 47.6709,
+    "lng": -122.3603,
+    "city": "Seattle",
+    "program": "ADU",
+    "status": "Permitting"
+  },
+  {
+    "slug": "23rd-ave-s-townhomes",
+    "name": "23rd Ave Townhomes",
+    "lat": 47.6708,
+    "lng": -122.3858,
+    "city": "Seattle",
+    "program": "Townhomes",
+    "status": "Completed"
+  },
+  {
+    "slug": "oberlin-ave-n-single-family",
+    "name": "Oberlin Ave N Single Family",
+    "lat": 47.6739,
+    "lng": -122.3497,
+    "city": "Seattle",
+    "program": "Single Family",
+    "status": "Construction"
+  },
+  {
+    "slug": "s-orcas-st-single-family",
+    "name": "S Orcas St Single Family",
+    "lat": 47.5512,
+    "lng": -122.3231,
+    "city": "Seattle",
+    "program": "Single Family",
+    "status": "Feasibility"
+  },
+  {
+    "slug": "sw-trenton-st-townhomes",
+    "name": "SW Trenton St Townhomes",
+    "lat": 47.5252,
+    "lng": -122.3475,
+    "city": "Seattle",
+    "program": "Townhomes",
+    "status": "Completed"
+  },
+  {
+    "slug": "myrtle-st-s-dadu",
+    "name": "Myrtle St S DADU",
+    "lat": 47.593,
+    "lng": -122.3138,
+    "city": "Seattle",
+    "program": "DADU",
+    "status": "Completed"
+  }
+]
