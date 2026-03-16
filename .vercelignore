@@ -1,0 +1,11 @@
+# Local source asset dumps and archives (not runtime assets)
+Westwood Project Photos/
+Westwood Project Photos.zip
+a0dc46da7bced8cd8b2c532400c57a13.mp4
+logo.jpg
+
+# Local tooling folders
+.cursor/
+.git/
+node_modules/
+dist/

@@ -157,3 +157,5 @@ logo.jpg
 *.pfx
 *.crt
 *.cer
+.vercel
+.env*.local
