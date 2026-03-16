@@ -1,6 +1,6 @@
 # Westwood Homes Website
 
-Minimal black-theme React website for Westwood Homes, structured as a multi-page marketing site for Homeowners, Services, Investors, Projects, and About.
+Minimal modern React website for Westwood Homes, structured as a multi-page marketing site for Homeowners, Services, Investors, Projects, and Contact.
 
 ## Tech Stack
 - Vite + React
@@ -20,6 +20,11 @@ npm run build
 npm run preview
 ```
 
+Build for GitHub Pages subpath:
+```bash
+npm run build:gh
+```
+
 ## Information Architecture
 - `/` Home (video hero, value tiles, metrics, featured projects)
 - `/homeowners/unlock-lot`
@@ -32,7 +37,7 @@ npm run preview
 - `/investors/overview`
 - `/projects`
 - `/projects/:slug`
-- `/about`
+- `/contact`
 
 ## Content + Asset Organization (Option 1)
 This v1 is designed for easy maintenance without a backend.
@@ -56,12 +61,19 @@ Recommended placement for client assets:
 - Email: `kevin@westwoodnw.com`
 
 ## Deployment
-Use Vercel for static hosting (no backend required for v1).
+This repo supports both Vercel (recommended active demos) and GitHub Pages (subpath archive demo).
 
-### Suggested v1 production setup
-- Hosting: Vercel
+### Vercel (recommended)
+- Build command: `npm run build`
+- Output directory: `dist`
 - DNS: managed at Squarespace, pointed to Vercel records
-- Lead forms: placeholder currently; connect later via Vercel Function / Formspree / Resend
+
+### GitHub Pages (subpath)
+- Build command: `npm run build:gh`
+- Base path is automatically `/real-estate/` in this mode
+- Workflow: `.github/workflows/deploy.yml`
+
+Lead forms are placeholder currently; connect later via Vercel Function / Formspree / Resend.
 
 ## Maintenance Workflow
 1. Update project/content JSON in `src/data/`

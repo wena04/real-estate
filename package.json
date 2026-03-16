@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:gh": "VITE_DEPLOY_TARGET=gh-pages vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy:gh": "npm run build:gh && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
