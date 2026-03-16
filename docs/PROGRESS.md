@@ -18,6 +18,21 @@ Build a polished, modern frontend MVP for Westwood Homes (Bellevue/Seattle area)
 - **Map:** Leaflet + OpenStreetMap with custom markers
 - **Deployment target:** Vercel previews for option comparison, GitHub Pages optional for stable demo
 
+## Latest Repo Scan Snapshot
+
+Updated after a fresh repo pass, including deployment/config files and docs.
+
+- Vite base path is environment-aware in `vite.config.js`:
+  - default (`npm run build`) -> `/` (Vercel)
+  - GitHub Pages (`npm run build:gh`) -> `/real-estate/`
+- `package.json` includes dual-build scripts:
+  - `build`
+  - `build:gh`
+  - `deploy:gh`
+- GitHub Pages workflow (`.github/workflows/deploy.yml`) builds with `build:gh` on `main`
+- Progress/handoff documentation exists in:
+  - `docs/PROGRESS.md`
+
 ## Key Decisions Already Made
 
 - Use display names for projects (no public full addresses on listings/cards)
@@ -45,6 +60,8 @@ Build a polished, modern frontend MVP for Westwood Homes (Bellevue/Seattle area)
 - Iconography added across concept/service cards
 - Section spacing and hero sizing tuned for better rhythm
 - `.gitignore` updated for local source asset dump files
+- `.vercelignore` added to prevent oversized/local files from being uploaded by Vercel CLI
+- Deployment notes consolidated into `docs/PROGRESS.md`
 
 ### In Progress / Active Focus
 
@@ -52,12 +69,15 @@ Build a polished, modern frontend MVP for Westwood Homes (Bellevue/Seattle area)
   - typography rhythm
   - hover intensity tuning
   - spacing calibration on dense sections
+- Deployment cutover workflow:
+  - keep GitHub Pages `v0` stable on `main`
+  - set Vercel production to a separate branch (recommended `mvp`)
 
 ### Pending / Next Suggested Steps
 
 1. **Finalize deployment strategy**
-   - Use Vercel branch previews for multiple client options
-   - Keep one stable demo URL for latest approved MVP
+   - Confirm Vercel Production Branch is set to `mvp` (not `main`)
+   - Push latest MVP code to `mvp` and verify production deployment source branch
 2. **Versioned client review flow**
    - Create demo branches (`demo/v1`, `demo/v2`, etc.)
    - Share side-by-side preview links
@@ -67,6 +87,19 @@ Build a polished, modern frontend MVP for Westwood Homes (Bellevue/Seattle area)
 4. **QA and accessibility**
    - Keyboard navigation check for slider/map interactions
    - Contrast audit on all themed components
+
+## Vercel Session Notes (Current)
+
+- User completed:
+  - `vercel login` (successful)
+  - `vercel link` to existing project (successful)
+- User encountered:
+  - `write EPIPE` during local CLI deploy
+  - `File size limit exceeded (100 MB)` due to local large archive in repo root
+- Mitigation completed:
+  - Added `.vercelignore` for large local archives/source dump files
+- Recommended flow:
+  - prefer Git push deploys via Vercel Git integration over local `vercel --prod` CLI for this repo
 
 ## Team/AI Handoff Notes
 

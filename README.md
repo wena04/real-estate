@@ -81,7 +81,7 @@ Lead forms are placeholder currently; connect later via Vercel Function / Formsp
 3. Commit + deploy
 
 Deployment steps and dual-host setup details:
-- `docs/DEPLOYMENT.md`
+- `docs/PROGRESS.md`
 
 ## Placeholder Markers
 Search for `TODO:` in `src/data/projects.json` and `src/data/siteContent.json` to find all asset replacement points.
