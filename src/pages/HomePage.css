@@ -4,6 +4,7 @@
   color: #fff;
   display: flex;
   align-items: center;
+  scroll-margin-top: 92px;
 }
 
 .home-hero video {
@@ -159,6 +160,139 @@
 
 .home-cta-band {
   border-top: 1px solid #e2e2e2;
+}
+
+.section[id] {
+  scroll-margin-top: 92px;
+}
+
+.onepage-form {
+  margin-top: 1.2rem;
+}
+
+.onepage-form h4 {
+  margin-bottom: 1rem;
+}
+
+.form-feedback {
+  margin: 0.8rem 0 0;
+  color: #3a4855;
+}
+
+.project-map-home-wrap {
+  margin-bottom: 1.15rem;
+}
+
+.project-filter-panel {
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.project-filter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.9rem;
+}
+
+.project-filter-hint {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  color: #5d6974;
+}
+
+.project-filter-reset {
+  padding: 0.45rem 0.8rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+}
+
+.project-filter-group + .project-filter-group {
+  margin-top: 0.8rem;
+}
+
+.project-filter-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #4f5b67;
+  margin-bottom: 0.5rem;
+}
+
+.project-chip-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.project-filter-chip {
+  border: 1px solid #c6ced5;
+  background: #fff;
+  color: #1f252c;
+  padding: 0.36rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  transition: all 0.2s ease;
+}
+
+.project-filter-chip:hover {
+  border-color: #9cabb8;
+  transform: translateY(-1px);
+}
+
+.project-filter-chip.is-active {
+  background: #1f242b;
+  border-color: #1f242b;
+  color: #fff;
+}
+
+.project-filter-count {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  color: #5a6672;
+}
+
+.map-placeholder {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #55616e;
+}
+
+.projects-results-meta {
+  margin-bottom: 0.85rem;
+  color: #4a5662;
+  font-size: 0.9rem;
+}
+
+.projects-load-more {
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.no-results-card {
+  text-align: center;
+}
+
+.no-results-card h4 {
+  margin-bottom: 0.45rem;
+}
+
+.no-results-card p {
+  margin: 0;
+}
+
+.onepage-contact-links {
+  margin-top: 1.2rem;
+}
+
+.contact-action-btn {
+  margin-top: 0.4rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
 }
 
 @media (max-width: 768px) {

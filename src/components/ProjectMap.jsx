@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import './ProjectMap.css';
@@ -95,7 +94,6 @@ function ProjectMap({ points, selectedSlug, onSelect }) {
                 <div className="project-popup-meta">{point.program} · {point.status}</div>
                 <h6>{point.name}</h6>
                 <p>{point.city}</p>
-                <Link to={`/projects/${point.slug}`}>View details</Link>
               </div>
             </Popup>
           </Marker>

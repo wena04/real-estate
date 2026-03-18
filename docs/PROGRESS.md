@@ -12,11 +12,12 @@ Build a polished, modern frontend MVP for Westwood Homes (Bellevue/Seattle area)
 ## Current Product Direction
 
 - **Style:** modern black/charcoal (minimal, professional)
-- **Architecture:** React + Vite + React Router + React Bootstrap
+- **Architecture:** React + Vite + React Bootstrap (single-page sections)
 - **Content model:** JSON-driven (`src/data/`)
 - **Assets:** organized in `public/assets/`
 - **Map:** Leaflet + OpenStreetMap with custom markers
-- **Deployment target:** Vercel previews for option comparison, GitHub Pages optional for stable demo
+- **Inquiries:** Vercel serverless endpoint sends inquiry emails
+- **Deployment target:** Vercel previews/production, GitHub Pages optional for archived demo
 
 ## Latest Repo Scan Snapshot
 
@@ -30,15 +31,17 @@ Updated after a fresh repo pass, including deployment/config files and docs.
   - `build:gh`
   - `deploy:gh`
 - GitHub Pages workflow (`.github/workflows/deploy.yml`) builds with `build:gh` on `main`
-- Progress/handoff documentation exists in:
-  - `docs/PROGRESS.md`
+- Backend inquiry endpoint exists in:
+  - `api/inquiry.js`
+- Frontend submit helper exists in:
+  - `src/utils/sendInquiry.js`
 
 ## Key Decisions Already Made
 
 - Use display names for projects (no public full addresses on listings/cards)
-- Keep CTA language and contact routing consistent via `/contact`
-- Merge About content into Home (single clearer narrative)
-- Add richer project detail pages with gallery slider and custom copy
+- Merge all major pages into one home experience with section anchors
+- Keep CTA/contact behavior consistent in-page
+- Keep project cards image-first without project detail page navigation
 - Add interactive card hover effects where appropriate
 - Keep non-click informational cards visually distinct from button-like elements
 
@@ -46,32 +49,43 @@ Updated after a fresh repo pass, including deployment/config files and docs.
 
 ### Done
 
-- Multi-page routing implemented (`Home`, `Homeowners`, `Services`, `Investors`, `Projects`, `Contact`)
-- Contact page redesigned to two-column layout (form + dark info panel)
-- Click/copy interactions implemented for phone + email
-- Address links to map navigation URL
-- Project list and map filtering UX improved
+- Single-page navigation implemented via top tab anchors:
+  - `Home`
+  - `Homeowners`
+  - `Services`
+  - `Investors`
+  - `Projects`
+  - `Contact`
+- Homeowners/Services/Investors content consolidated into their single sections
+- Contact section supports:
+  - click-to-call and click-to-email
+  - copy buttons for phone/email
+  - office address link + explicit "Get directions" button
+- Project section supports:
+  - map + cards in one section
+  - multi-select Program/Status filters
+  - filter hint text and selected-count indicators
+  - reset filters
+  - results count
+  - limited initial card render with "Show more projects" (performance)
 - Custom map pin + popup styling implemented
-- Project detail pages upgraded:
-  - image carousel
-  - thumbnail strip
-  - status-based + project-specific description content
-- Project card hover overlay now includes title, context, and "View details"
+- Project card hover overlay preserved (without detail-page CTA)
 - Iconography added across concept/service cards
-- Section spacing and hero sizing tuned for better rhythm
+- Section spacing, hero sizing, and typography tuned for visual rhythm
+- Serif heading stack applied for a more premium editorial tone
+- Inquiry email backend connected (Resend via Vercel function)
 - `.gitignore` updated for local source asset dump files
 - `.vercelignore` added to prevent oversized/local files from being uploaded by Vercel CLI
-- Deployment notes consolidated into `docs/PROGRESS.md`
+- Removed obsolete multi-page files and unused page-level CSS/components
 
 ### In Progress / Active Focus
 
-- Final visual consistency pass (micro-adjustments):
-  - typography rhythm
-  - hover intensity tuning
-  - spacing calibration on dense sections
-- Deployment cutover workflow:
-  - keep GitHub Pages `v0` stable on `main`
-  - set Vercel production to a separate branch (recommended `mvp`)
+- Content polish and conversion tuning:
+  - refine section copy for client tone
+  - optional contact reassurance text near forms
+- Deployment workflow hardening:
+  - confirm production branch policy in Vercel
+  - maintain stable "v0" archive strategy if needed
 
 ### Pending / Next Suggested Steps
 
@@ -82,10 +96,10 @@ Updated after a fresh repo pass, including deployment/config files and docs.
    - Create demo branches (`demo/v1`, `demo/v2`, etc.)
    - Share side-by-side preview links
 3. **Content polish**
-   - Replace placeholder form submission alerts with backend/form service
-   - Optional: refine project descriptions with stakeholder-reviewed copy
+   - Optional: refine project descriptions and section copy with stakeholder-reviewed text
+   - Optional: add validation/UX copy to reduce incomplete submissions
 4. **QA and accessibility**
-   - Keyboard navigation check for slider/map interactions
+   - Keyboard navigation check for map and filter interactions
    - Contrast audit on all themed components
 
 ## Vercel Session Notes (Current)
@@ -105,8 +119,9 @@ Updated after a fresh repo pass, including deployment/config files and docs.
 
 - Prefer editing JSON content (`src/data/`) over hardcoding.
 - Avoid exposing internal/full addresses on public project cards.
-- Keep project CTA wording consistent: **"View details"**.
-- Keep contact CTA destination consistent: `/contact`.
+- Keep project cards image-forward and lightweight (no project detail route).
+- Keep one-page section-anchor navigation behavior intact.
+- Keep contact copy/call/directions actions in the contact section.
 - Preserve responsive behavior when modifying card grids/hero sections.
 
 ## Important Paths
@@ -114,8 +129,9 @@ Updated after a fresh repo pass, including deployment/config files and docs.
 - App routes/layout: `src/App.jsx`
 - Global theme/tokens: `src/index.css`
 - Home page: `src/pages/HomePage.jsx`, `src/pages/HomePage.css`
-- Projects list/map: `src/pages/ProjectsPage.jsx`, `src/components/ProjectMap.jsx`
-- Project detail: `src/pages/ProjectDetailPage.jsx`, `src/pages/ProjectDetailPage.css`
-- Contact page: `src/pages/ContactPage.jsx`, `src/pages/ContactPage.css`
+- Navbar/footer (anchor nav): `src/components/Navbar.jsx`, `src/components/Footer.jsx`
+- Projects map component: `src/components/ProjectMap.jsx`
+- Inquiry backend: `api/inquiry.js`
+- Inquiry frontend utility: `src/utils/sendInquiry.js`
 - Data: `src/data/siteContent.json`, `src/data/projects.json`, `src/data/locations.json`
 

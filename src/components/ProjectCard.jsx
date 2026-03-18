@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './ProjectCard.css';
 
 function ProjectCard({ project }) {
@@ -24,14 +23,12 @@ function ProjectCard({ project }) {
           <div className="project-card-overlay-inner">
             <h5>{project.displayName}</h5>
             <p>{hoverCopy}</p>
-            <span className="project-card-overlay-link">View details</span>
           </div>
         </div>
       </div>
       <div className="meta-line">{project.program} · {project.status}</div>
       <h4 className="project-card-title">{project.displayName}</h4>
       <p>{project.city}</p>
-      <Link className="btn-ghost" to={`/projects/${project.slug}`}>View details</Link>
     </article>
   );
 }
