@@ -91,7 +91,7 @@ function ProjectMap({ points, selectedSlug, onSelect }) {
           >
             <Popup>
               <div className="project-popup">
-                <div className="project-popup-meta">{point.program} · {point.status}</div>
+                <div className="project-popup-meta">{point.program}</div>
                 <h6>{point.name}</h6>
                 <p>{point.city}</p>
               </div>

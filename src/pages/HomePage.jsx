@@ -4,18 +4,17 @@ import { FiActivity, FiBarChart2, FiClock, FiCompass, FiEdit3, FiFileText, FiGit
 import siteContent from '../data/siteContent.json';
 import projects from '../data/projects.json';
 import locations from '../data/locations.json';
-import ProjectCard from '../components/ProjectCard';
+import ProjectCard from '../components/projects/ProjectCard';
 import { sendInquiry } from '../utils/sendInquiry';
 import './HomePage.css';
 
-const LazyProjectMap = lazy(() => import('../components/ProjectMap'));
+const LazyProjectMap = lazy(() => import('../components/projects/ProjectMap'));
 
 function HomePage() {
   const heroVideoSrc = `${import.meta.env.BASE_URL}${String(siteContent.heroVideo || '').replace(/^\/+/, '')}`;
   const { contact } = siteContent;
   const [selectedProjectSlug, setSelectedProjectSlug] = useState('');
   const [selectedPrograms, setSelectedPrograms] = useState([]);
-  const [selectedStatuses, setSelectedStatuses] = useState([]);
   const [visibleProjectCount, setVisibleProjectCount] = useState(6);
   const [copiedField, setCopiedField] = useState('');
   const [formState, setFormState] = useState({
@@ -95,18 +94,13 @@ function HomePage() {
     () => [...new Set(projects.map((project) => project.program))],
     []
   );
-  const statusFilters = useMemo(
-    () => [...new Set(projects.map((project) => project.status))],
-    []
-  );
 
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
       const programMatch = !selectedPrograms.length || selectedPrograms.includes(project.program);
-      const statusMatch = !selectedStatuses.length || selectedStatuses.includes(project.status);
-      return programMatch && statusMatch;
+      return programMatch;
     });
-  }, [selectedPrograms, selectedStatuses]);
+  }, [selectedPrograms]);
 
   const mapPoints = useMemo(() => {
     const allowedSlugs = new Set(filteredProjects.map((project) => project.slug));
@@ -125,7 +119,7 @@ function HomePage() {
 
   useEffect(() => {
     setVisibleProjectCount(6);
-  }, [selectedPrograms, selectedStatuses]);
+  }, [selectedPrograms]);
 
   const updateForm = (section, field, value) => {
     setFormState((prev) => ({
@@ -461,14 +455,13 @@ function HomePage() {
             <div className="project-filter-head">
               <div>
                 <div className="meta-line">Project filters</div>
-                <p className="project-filter-hint">Tip: You can select multiple options in each filter group.</p>
+                <p className="project-filter-hint">Tip: You can select multiple property types.</p>
               </div>
               <button
                 type="button"
                 className="btn-ghost project-filter-reset"
                 onClick={() => {
                   setSelectedPrograms([]);
-                  setSelectedStatuses([]);
                 }}
               >
                 Reset filters
@@ -490,23 +483,6 @@ function HomePage() {
                 ))}
               </div>
               <p className="project-filter-count">{selectedPrograms.length} selected</p>
-            </div>
-
-            <div className="project-filter-group">
-              <div className="project-filter-label">Status</div>
-              <div className="project-chip-wrap">
-                {statusFilters.map((status) => (
-                  <button
-                    key={status}
-                    type="button"
-                    className={`project-filter-chip ${selectedStatuses.includes(status) ? 'is-active' : ''}`}
-                    onClick={() => toggleFilterValue(status, setSelectedStatuses)}
-                  >
-                    {status}
-                  </button>
-                ))}
-              </div>
-              <p className="project-filter-count">{selectedStatuses.length} selected</p>
             </div>
           </div>
 

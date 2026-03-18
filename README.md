@@ -1,5 +1,39 @@
 # Westwood Homes Website
 
+Westwood Homes Website is a modern real estate marketing site built with React and Vite.  
+It presents Westwood's services and projects in a clean, mobile-friendly layout, and includes an inquiry form for lead capture.
+
+## What This Project Includes
+- A polished one-page website experience
+- Project map and project card browsing
+- Contact and inquiry flow
+- Serverless inquiry email delivery with Resend
+
+## Tech Stack
+- React
+- Vite
+- React Bootstrap
+- Leaflet / OpenStreetMap
+- Vercel serverless functions
+
+## Local Development
+```bash
+npm install
+npm run dev
+```
+
+## Build
+```bash
+npm run build
+npm run preview
+```
+
+## Deployment
+Production deploys through Vercel from the `mvp` branch.
+
+For active implementation notes and deployment progress, see `docs/PROGRESS.md`.
+# Westwood Homes Website
+
 Minimal modern React website for Westwood Homes, structured as a multi-page marketing site for Homeowners, Services, Investors, Projects, and Contact.
 
 ## Tech Stack
@@ -73,7 +107,7 @@ This repo supports both Vercel (recommended active demos) and GitHub Pages (subp
 - Base path is automatically `/real-estate/` in this mode
 - Workflow: `.github/workflows/deploy.yml`
 
-Lead forms are placeholder currently; connect later via Vercel Function / Formspree / Resend.
+Lead forms are connected through the Vercel serverless endpoint at `api/inquiry.js` using Resend.
 
 ## Maintenance Workflow
 1. Update project/content JSON in `src/data/`

@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.INQUIRY_TO_EMAIL || 'kevin@westwoodnw.com';
+  const toEmail = process.env.INQUIRY_TO_EMAIL || 'Kevin@westwoodnw.com';
   const fromEmail = process.env.INQUIRY_FROM_EMAIL || 'Westwood Inquiries <onboarding@resend.dev>';
 
   if (!resendApiKey) {
@@ -35,12 +35,28 @@ export default async function handler(req, res) {
   } = req.body || {};
 
   const resend = new Resend(resendApiKey);
+  const trimmedEmail = String(email || '').trim();
 
   try {
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: fromEmail,
       to: [toEmail],
       subject: `Westwood website inquiry: ${source}`,
+      replyTo: trimmedEmail || undefined,
+      text: [
+        `Source: ${source}`,
+        `Name: ${name || '-'}`,
+        `Email: ${trimmedEmail || '-'}`,
+        `Phone: ${phone || '-'}`,
+        `Address: ${address || '-'}`,
+        `Goal: ${goal || '-'}`,
+        `Timing: ${timing || '-'}`,
+        `Check size: ${checkSize || '-'}`,
+        `Accredited: ${accredited || '-'}`,
+        `Return preference: ${preference || '-'}`,
+        `Photo links: ${photos || '-'}`,
+        `Message: ${message || '-'}`,
+      ].join('\n'),
       html: `
         <h2>New inquiry from Westwood website</h2>
         ${formatField('Source', source)}
@@ -58,10 +74,23 @@ export default async function handler(req, res) {
       `,
     });
 
+    if (error) {
+      return res.status(500).json({
+        error: error.message || 'Email provider rejected this request.',
+      });
+    }
+
     return res.status(200).json({ ok: true });
   } catch (error) {
+    const message = error?.message || 'Failed to send inquiry email.';
+    // Common setup issue with Resend: unverified sender domain or restricted recipient in test mode.
+    if (message.toLowerCase().includes('verify') || message.toLowerCase().includes('test mode')) {
+      return res.status(500).json({
+        error: `${message} Check RESEND_API_KEY, INQUIRY_FROM_EMAIL (verified domain), and recipient permissions.`,
+      });
+    }
     return res.status(500).json({
-      error: error?.message || 'Failed to send inquiry email.',
+      error: message,
     });
   }
 }

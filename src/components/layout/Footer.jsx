@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap';
-import siteContent from '../data/siteContent.json';
+import siteContent from '../../data/siteContent.json';
 import './Footer.css';
 
 function Footer() {

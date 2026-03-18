@@ -2,14 +2,7 @@ import './ProjectCard.css';
 
 function ProjectCard({ project }) {
   const imageSrc = `${import.meta.env.BASE_URL}${String(project.coverImage || '').replace(/^\/+/, '')}`;
-  const hoverCopy =
-    project.status === 'Completed'
-      ? 'Completed and delivered'
-      : project.status === 'Construction'
-        ? 'Active construction progress'
-        : project.status === 'Permitting'
-          ? 'In permitting and agency coordination'
-          : 'Feasibility and planning in progress';
+  const hoverCopy = `${project.program} in ${project.city}`;
 
   return (
     <article className="card-min project-card">
@@ -26,7 +19,7 @@ function ProjectCard({ project }) {
           </div>
         </div>
       </div>
-      <div className="meta-line">{project.program} · {project.status}</div>
+      <div className="meta-line">{project.program}</div>
       <h4 className="project-card-title">{project.displayName}</h4>
       <p>{project.city}</p>
     </article>

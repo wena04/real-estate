@@ -1,5 +1,38 @@
 # Westwood Homes Website Progress
 
+Last updated: 2026-03-18
+
+## Current Status
+- Core MVP website is implemented and deploys on Vercel.
+- Production branch is `mvp`.
+- Inquiry form backend is active through `api/inquiry.js` using Resend.
+- Local environment variables are configured for inquiry email testing.
+
+## Completed Recently
+- Integrated and validated Resend-based email send flow for inquiries.
+- Added safe env-variable workflow for local development.
+- Confirmed serverless inquiry endpoint returns success when properly configured.
+- Moved deployment and DNS setup toward Vercel + Squarespace third-party DNS model.
+
+## In Progress
+- Final domain routing verification for `westwoodnw.com` and `www.westwoodnw.com`.
+- Final DNS cleanup of legacy records not needed for the new site.
+- Final confirmation of production email sender/recipient settings in Vercel.
+
+## Next Steps
+1. Confirm both apex and `www` domains show valid configuration in Vercel.
+2. Keep Google Workspace and Resend DNS records intact during cutover.
+3. Verify inquiry form submission end-to-end on production domain.
+4. Perform final QA pass on responsive layout, navigation, and contact flow.
+
+## Important Paths
+- App entry: `src/App.jsx`
+- Home page UI: `src/pages/HomePage.jsx`
+- Global styles: `src/index.css`
+- Inquiry API endpoint: `api/inquiry.js`
+- Inquiry client helper: `src/utils/sendInquiry.js`
+# Westwood Homes Website Progress
+
 ## Project Intent
 
 Build a polished, modern frontend MVP for Westwood Homes (Bellevue/Seattle area) that:
