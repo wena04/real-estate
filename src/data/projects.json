@@ -1,18 +1,5 @@
 [
   {
-    "slug": "se-44th-pl-single-family",
-    "displayName": "44th Pl Single Family",
-    "program": "Single Family",
-    "status": "Completed",
-    "city": "Bellevue",
-    "internalAddress": "12803 SE 44th Pl, Bellevue, WA",
-    "lat": 47.5669,
-    "lng": -122.1652,
-    "coverImage": "assets/projects/se-44th-pl-single-family/image-1.jpg",
-    "notes": "Client asset mapped from uploaded project folder.",
-    "assetFolder": "assets/projects/se-44th-pl-single-family"
-  },
-  {
     "slug": "se-44th-pl-residence-single-family",
     "displayName": "44th Pl Residence Single Family",
     "program": "Single Family",
@@ -21,7 +8,7 @@
     "internalAddress": "12811 SE 44th Pl, Bellevue, WA",
     "lat": 47.5668,
     "lng": -122.1649,
-    "coverImage": "assets/projects/se-44th-pl-residence-single-family/image-1.jpg",
+    "coverImage": "assets/projects/se-44th-pl-residence-single-family/cover-facade.png",
     "notes": "Client asset mapped from uploaded project folder.",
     "assetFolder": "assets/projects/se-44th-pl-residence-single-family"
   },
@@ -73,7 +60,7 @@
     "internalAddress": "2350 N 64th St, Seattle, WA",
     "lat": 47.6754,
     "lng": -122.3834,
-    "coverImage": "assets/projects/n-64th-st-townhomes/image-1.jpg",
+    "coverImage": "assets/projects/n-64th-st-townhomes/cover-facade.png",
     "notes": "Client asset mapped from uploaded project folder.",
     "assetFolder": "assets/projects/n-64th-st-townhomes"
   },
