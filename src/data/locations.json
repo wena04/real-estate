@@ -1,16 +1,7 @@
 [
   {
-    "slug": "se-44th-pl-single-family",
-    "name": "44th Pl Single Family",
-    "lat": 47.5669,
-    "lng": -122.1652,
-    "city": "Bellevue",
-    "program": "Single Family",
-    "status": "Completed"
-  },
-  {
     "slug": "se-44th-pl-residence-single-family",
-    "name": "SE 44th PL Residence Single Family",
+    "name": "44th Pl Residence Single Family",
     "lat": 47.5668,
     "lng": -122.1649,
     "city": "Bellevue",

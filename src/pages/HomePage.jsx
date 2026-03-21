@@ -218,106 +218,6 @@ function HomePage() {
         </Container>
       </section>
 
-      <section id="homeowners" className="section">
-        <Container>
-          <div className="section-header section-header--title-only">
-            <h2>Homeowners</h2>
-          </div>
-          <Row className="g-3">
-            {homeownersCards.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Col md={6} lg={4} key={item.title}>
-                  <article className="card-min info-tile">
-                    <span className="tile-icon"><Icon aria-hidden="true" /></span>
-                    <h4>{item.title}</h4>
-                    <h5 className="info-tile-headline">{item.headline}</h5>
-                    <p>{item.description}</p>
-                    <ul className="list-clean info-tile-list">
-                      {item.bullets.map((bullet) => (
-                        <li key={bullet}>{bullet}</li>
-                      ))}
-                    </ul>
-                    <div className="section-actions">
-                      <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
-                    </div>
-                  </article>
-                </Col>
-              );
-            })}
-          </Row>
-
-          <Form
-            id="homeowners-form"
-            className="card-min form-card onepage-form"
-            onSubmit={(event) => {
-              event.preventDefault();
-              handleSubmit('homeowners', () => ({
-                source: 'Homeowners Feasibility Review',
-                ...formState.homeowners,
-              }));
-            }}
-          >
-            <h4>Start feasibility review</h4>
-            <Row className="g-3">
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control value={formState.homeowners.name} onChange={(e) => updateForm('homeowners', 'name', e.target.value)} required />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" value={formState.homeowners.email} onChange={(e) => updateForm('homeowners', 'email', e.target.value)} required />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Phone</Form.Label>
-                  <Form.Control value={formState.homeowners.phone} onChange={(e) => updateForm('homeowners', 'phone', e.target.value)} />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Property address</Form.Label>
-                  <Form.Control value={formState.homeowners.address} onChange={(e) => updateForm('homeowners', 'address', e.target.value)} required />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Goal</Form.Label>
-                  <Form.Select value={formState.homeowners.goal} onChange={(e) => updateForm('homeowners', 'goal', e.target.value)}>
-                    <option value="">Select</option>
-                    <option>Sell</option>
-                    <option>Partner</option>
-                    <option>Build and keep</option>
-                  </Form.Select>
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Timing</Form.Label>
-                  <Form.Control value={formState.homeowners.timing} onChange={(e) => updateForm('homeowners', 'timing', e.target.value)} placeholder="0-3 months, etc" />
-                </Form.Group>
-              </Col>
-              <Col md={12}>
-                <Form.Group>
-                  <Form.Label>Photo links</Form.Label>
-                  <Form.Control value={formState.homeowners.photos} onChange={(e) => updateForm('homeowners', 'photos', e.target.value)} placeholder="Drive/Dropbox links" />
-                </Form.Group>
-              </Col>
-            </Row>
-            <div className="section-actions">
-              <button className="btn-main" type="submit" disabled={submitStatus.homeowners.loading}>
-                {submitStatus.homeowners.loading ? 'Sending...' : 'Submit feasibility request'}
-              </button>
-            </div>
-            {submitStatus.homeowners.message ? <p className="form-feedback">{submitStatus.homeowners.message}</p> : null}
-          </Form>
-        </Container>
-      </section>
-
       <section id="services" className="section section--alt">
         <Container>
           <div className="section-header">
@@ -511,6 +411,106 @@ function HomePage() {
               </Suspense>
             </div>
           </div>
+        </Container>
+      </section>
+
+      <section id="homeowners" className="section">
+        <Container>
+          <div className="section-header section-header--title-only">
+            <h2>Homeowners</h2>
+          </div>
+          <Row className="g-3">
+            {homeownersCards.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Col md={6} lg={4} key={item.title}>
+                  <article className="card-min info-tile">
+                    <span className="tile-icon"><Icon aria-hidden="true" /></span>
+                    <h4>{item.title}</h4>
+                    <h5 className="info-tile-headline">{item.headline}</h5>
+                    <p>{item.description}</p>
+                    <ul className="list-clean info-tile-list">
+                      {item.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                    <div className="section-actions">
+                      <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
+                    </div>
+                  </article>
+                </Col>
+              );
+            })}
+          </Row>
+
+          <Form
+            id="homeowners-form"
+            className="card-min form-card onepage-form"
+            onSubmit={(event) => {
+              event.preventDefault();
+              handleSubmit('homeowners', () => ({
+                source: 'Homeowners Feasibility Review',
+                ...formState.homeowners,
+              }));
+            }}
+          >
+            <h4>Start feasibility review</h4>
+            <Row className="g-3">
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control value={formState.homeowners.name} onChange={(e) => updateForm('homeowners', 'name', e.target.value)} required />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="email" value={formState.homeowners.email} onChange={(e) => updateForm('homeowners', 'email', e.target.value)} required />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label>Phone</Form.Label>
+                  <Form.Control value={formState.homeowners.phone} onChange={(e) => updateForm('homeowners', 'phone', e.target.value)} />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label>Property address</Form.Label>
+                  <Form.Control value={formState.homeowners.address} onChange={(e) => updateForm('homeowners', 'address', e.target.value)} required />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label>Goal</Form.Label>
+                  <Form.Select value={formState.homeowners.goal} onChange={(e) => updateForm('homeowners', 'goal', e.target.value)}>
+                    <option value="">Select</option>
+                    <option>Sell</option>
+                    <option>Partner</option>
+                    <option>Build and keep</option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label>Timing</Form.Label>
+                  <Form.Control value={formState.homeowners.timing} onChange={(e) => updateForm('homeowners', 'timing', e.target.value)} placeholder="0-3 months, etc" />
+                </Form.Group>
+              </Col>
+              <Col md={12}>
+                <Form.Group>
+                  <Form.Label>Photo links</Form.Label>
+                  <Form.Control value={formState.homeowners.photos} onChange={(e) => updateForm('homeowners', 'photos', e.target.value)} placeholder="Drive/Dropbox links" />
+                </Form.Group>
+              </Col>
+            </Row>
+            <div className="section-actions">
+              <button className="btn-main" type="submit" disabled={submitStatus.homeowners.loading}>
+                {submitStatus.homeowners.loading ? 'Sending...' : 'Submit feasibility request'}
+              </button>
+            </div>
+            {submitStatus.homeowners.message ? <p className="form-feedback">{submitStatus.homeowners.message}</p> : null}
+          </Form>
         </Container>
       </section>
 
