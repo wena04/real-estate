@@ -1,7 +1,7 @@
 [
   {
     "slug": "se-44th-pl-single-family",
-    "name": "SE 44th PL Single Family",
+    "name": "44th Pl Single Family",
     "lat": 47.5669,
     "lng": -122.1652,
     "city": "Bellevue",
@@ -19,7 +19,7 @@
   },
   {
     "slug": "fairmount-ave-sw-dadu",
-    "name": "Fairmount Ave SW DADU",
+    "name": "Fairmount Ave DADU",
     "lat": 47.5765,
     "lng": -122.383,
     "city": "Seattle",
@@ -28,7 +28,7 @@
   },
   {
     "slug": "mlk-jr-way-s-townhomes",
-    "name": "MLK Jr Way S Townhomes",
+    "name": "MLK Jr Way Townhomes",
     "lat": 47.5998,
     "lng": -122.297,
     "city": "Seattle",
@@ -37,7 +37,7 @@
   },
   {
     "slug": "mlk-jr-way-s-townhomes-phase-2",
-    "name": "MLK Jr Way S Townhomes II",
+    "name": "MLK Jr Way Townhomes II",
     "lat": 47.5984,
     "lng": -122.2966,
     "city": "Seattle",
@@ -46,7 +46,7 @@
   },
   {
     "slug": "n-64th-st-townhomes",
-    "name": "N 64th St Townhomes",
+    "name": "64th St Townhomes",
     "lat": 47.6754,
     "lng": -122.3834,
     "city": "Seattle",
@@ -73,7 +73,7 @@
   },
   {
     "slug": "oberlin-ave-n-single-family",
-    "name": "Oberlin Ave N Single Family",
+    "name": "Oberlin Ave Single Family",
     "lat": 47.6739,
     "lng": -122.3497,
     "city": "Seattle",
@@ -82,7 +82,7 @@
   },
   {
     "slug": "s-orcas-st-single-family",
-    "name": "S Orcas St Single Family",
+    "name": "Orcas St Single Family",
     "lat": 47.5512,
     "lng": -122.3231,
     "city": "Seattle",
@@ -91,7 +91,7 @@
   },
   {
     "slug": "sw-trenton-st-townhomes",
-    "name": "SW Trenton St Townhomes",
+    "name": "Trenton St Townhomes",
     "lat": 47.5252,
     "lng": -122.3475,
     "city": "Seattle",
@@ -100,7 +100,7 @@
   },
   {
     "slug": "myrtle-st-s-dadu",
-    "name": "Myrtle St S DADU",
+    "name": "Myrtle St DADU",
     "lat": 47.593,
     "lng": -122.3138,
     "city": "Seattle",

@@ -1,6 +1,6 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
-import { FiActivity, FiBarChart2, FiClock, FiCompass, FiEdit3, FiFileText, FiGitBranch, FiLayers, FiLink2, FiMapPin, FiSearch, FiSettings, FiTarget, FiTool, FiTrendingUp, FiUsers } from 'react-icons/fi';
+import { FiActivity, FiBarChart2, FiCompass, FiEdit3, FiTool, FiTrendingUp } from 'react-icons/fi';
 import siteContent from '../data/siteContent.json';
 import projects from '../data/projects.json';
 import locations from '../data/locations.json';
@@ -13,9 +13,8 @@ const LazyProjectMap = lazy(() => import('../components/projects/ProjectMap'));
 function HomePage() {
   const heroVideoSrc = `${import.meta.env.BASE_URL}${String(siteContent.heroVideo || '').replace(/^\/+/, '')}`;
   const { contact } = siteContent;
-  const [selectedProjectSlug, setSelectedProjectSlug] = useState('');
-  const [selectedPrograms, setSelectedPrograms] = useState([]);
   const [visibleProjectCount, setVisibleProjectCount] = useState(6);
+  const [selectedProjectSlug, setSelectedProjectSlug] = useState('');
   const [copiedField, setCopiedField] = useState('');
   const [formState, setFormState] = useState({
     homeowners: { address: '', photos: '', goal: '', timing: '', email: '', name: '', phone: '' },
@@ -27,99 +26,139 @@ function HomePage() {
     investors: { loading: false, message: '' },
     contact: { loading: false, message: '' },
   });
-  const valueItems = [
-    { title: 'Feasibility first', text: 'Zoning, setbacks, utilities, and critical area risk before major spend.', icon: FiSearch },
-    { title: 'End-to-end delivery', text: 'Design, permits, construction, and execution managed by one team.', icon: FiLayers },
-    { title: 'Local infill focus', text: 'Seattle, Eastside, and high-opportunity neighborhoods.', icon: FiMapPin },
-    { title: 'Execution culture', text: 'Predictable schedule, tight scopes, transparent reporting.', icon: FiClock },
-    { title: 'Aligned incentives', text: 'Structures that work for homeowners, investors, and the team.', icon: FiLink2 },
-  ];
-  const proofItems = [
-    { stat: '100+', detail: 'new construction units delivered' },
-    { stat: '50+', detail: 'doors under management (BTR)' },
-    { stat: 'Infill specialists', detail: 'townhomes, cottages, ADUs' },
-  ];
-  const aboutItems = [
-    {
-      title: 'Mission',
-      text: 'Create durable infill housing with predictable execution and transparent communication.',
-      icon: FiTarget,
-    },
-    {
-      title: 'How we work',
-      text: 'Source, feasibility, permits, build, and closeout with owner-level reporting throughout.',
-      icon: FiSettings,
-    },
-    {
-      title: 'Team',
-      text: 'Builder-first operators with development discipline focused on Seattle and the Eastside.',
-      icon: FiUsers,
-    },
-  ];
   const homeownersCards = [
     {
-      title: 'Unlock lot potential',
-      text: 'Assess ADU, DADU, cottage, townhome, or small multiplex paths with realistic risk and yield context.',
-      icon: FiCompass,
-    },
-    {
-      title: 'Sell with clarity',
-      text: 'Compare market listing and direct-offer pathways against your timing and certainty goals.',
+      title: 'Build & Increase Value',
+      headline: 'Build to Grow Your Equity and Income',
+      description:
+        'Your land may be worth more than you think. Whether it’s adding an ADU for rental income, subdividing, or developing new homes for sale, we help you identify the highest and best use of your property. Every project is tailored — some maximize cash flow, others maximize resale value.',
+      bullets: [
+        'Add ADU / DADU for passive income',
+        'Increase property value and equity',
+        'Full-lot development for maximum return',
+      ],
+      cta: 'Explore Development Options',
+      ctaHref: '#homeowners-form',
       icon: FiTrendingUp,
     },
     {
-      title: 'Feasibility review',
-      text: 'Submit your property information and receive plain-English recommendations and next steps.',
+      title: 'Sell Without the Hassle',
+      headline: 'Prefer a Simple Sale? We Buy Properties Directly',
+      description:
+        'If you’d rather avoid the time, risk, and complexity of development, we offer a straightforward purchase option. No need to manage permits, construction, or market uncertainty — we handle everything.',
+      bullets: [
+        'Fast and flexible closing',
+        'No construction or permitting hassle',
+        'Sell as-is',
+      ],
+      cta: 'Get a Direct Offer',
+      ctaHref: '#contact',
+      icon: FiCompass,
+    },
+    {
+      title: 'Start with Feasibility',
+      headline: 'Start with a Feasibility Analysis',
+      description:
+        'Not sure what your property can support? We provide a professional feasibility study to help you understand zoning, development potential, costs, and projected returns — so you can make informed decisions before committing.',
+      bullets: [
+        'Zoning & development potential review',
+        'Preliminary cost and ROI analysis',
+        'Clear, data-driven recommendations',
+      ],
+      cta: 'Start with Feasibility Analysis',
+      ctaHref: '#homeowners-form',
       icon: FiActivity,
     },
   ];
   const serviceItems = [
-    { title: 'Design + Build', text: 'Integrated planning and construction delivery under one accountable team.', icon: FiEdit3 },
-    { title: 'Development Consulting', text: 'Feasibility, entitlement pathing, and risk-roadmap support before major spend.', icon: FiBarChart2 },
-    { title: 'Construction Management', text: 'Procurement, controls, owner reporting, and quality oversight from start to finish.', icon: FiTool },
-  ];
-  const investorOverview = [
     {
-      title: 'Process',
-      text: 'Sourcing, feasibility, permits, build, and exit/refinance with disciplined underwriting.',
-      icon: FiGitBranch,
+      title: 'Design & Consultant Coordination',
+      headline: 'We Turn Your Vision Into a Buildable Plan',
+      description: 'We help homeowners assemble the right team of architects, engineers, and consultants to transform ideas into a clear, buildable design. From early concepts to permit-ready drawings, we guide the process to ensure your project is aligned with your goals, budget, and site conditions.',
+      bullets: [
+        'Coordinate architect, structural, and MEP consultants',
+        'Align design with budget and constructability',
+        'Navigate city requirements and permitting process',
+      ],
+      cta: 'Start Your Design Process',
+      ctaHref: '#contact',
+      icon: FiEdit3,
     },
     {
-      title: 'Reporting cadence',
-      text: 'Clear status updates, milestone tracking, and concise investor communications.',
-      icon: FiFileText,
+      title: 'General Contracting (Build Execution)',
+      headline: 'From Paper to Reality - Built Right',
+      description: 'Already have plans? We step in as your general contractor to execute the project with precision. Our team brings your drawings to life with disciplined construction practices, reliable scheduling, and consistent quality control.',
+      bullets: [
+        'Full construction execution',
+        'Experienced subcontractor network',
+        'Clear timeline and cost control',
+      ],
+      cta: 'Build With Us',
+      ctaHref: '#contact',
+      icon: FiTool,
+    },
+    {
+      title: 'Development & Feasibility Support',
+      headline: 'Build Smarter - Start With the Right Strategy',
+      description: 'We help homeowners evaluate and shape their projects from a development perspective. From feasibility analysis to design optimization, we ensure your project is financially viable and aligned with market demand. You can choose to proceed with us through construction - or exit the project once permits are secured.',
+      bullets: [
+        'Feasibility and highest-best-use analysis',
+        'Cost and return projections',
+        'Flexible exit options after permitting',
+      ],
+      cta: 'Evaluate My Project',
+      ctaHref: '#homeowners-form',
+      icon: FiBarChart2,
     },
   ];
-  const programFilters = useMemo(
-    () => [...new Set(projects.map((project) => project.program))],
-    []
-  );
-
-  const filteredProjects = useMemo(() => {
-    return projects.filter((project) => {
-      const programMatch = !selectedPrograms.length || selectedPrograms.includes(project.program);
-      return programMatch;
-    });
-  }, [selectedPrograms]);
-
-  const mapPoints = useMemo(() => {
-    const allowedSlugs = new Set(filteredProjects.map((project) => project.slug));
-    return locations.filter((point) => allowedSlugs.has(point.slug));
-  }, [filteredProjects]);
-  const visibleProjects = useMemo(
-    () => filteredProjects.slice(0, visibleProjectCount),
-    [filteredProjects, visibleProjectCount]
-  );
-
-  useEffect(() => {
-    if (!filteredProjects.some((project) => project.slug === selectedProjectSlug)) {
-      setSelectedProjectSlug('');
-    }
-  }, [filteredProjects, selectedProjectSlug]);
-
-  useEffect(() => {
-    setVisibleProjectCount(6);
-  }, [selectedPrograms]);
+  const investorInvestmentCards = [
+    {
+      key: 'short-term',
+      title: 'Short-Term Investment (Build-to-Sell Development)',
+      headline: 'Short-Term Returns Through Project Execution',
+      description:
+        'Invest in residential development projects with clear timelines and exit strategies, where returns are generated through execution and sale upon completion.',
+      highlights: [
+        'Typical duration: 18–24 months',
+        'Structured entry and exit',
+        'Returns driven by project execution and sale',
+        'Includes both single-family and small-scale multi-unit developments (ADUs, cottages, and townhomes)',
+      ],
+    },
+    {
+      key: 'long-term',
+      title: 'Long-Term Investment (Build-to-Rent)',
+      headline: 'Long-Term Cash Flow and Appreciation',
+      description:
+        'Invest in townhome build-to-rent projects designed for stable rental income and long-term asset growth.',
+      highlights: [
+        'Ongoing rental cash flow',
+        'Long-term appreciation',
+        'Professionally managed assets',
+      ],
+    },
+  ];
+  const investorRoleBlock = {
+    sectionTitle: 'Our Role',
+    headline: 'We Manage Everything',
+    description:
+      'From acquisition and feasibility to construction and final delivery, Westwood handles the entire process — allowing investors to remain fully passive.',
+    listTitle: 'What we handle:',
+    items: [
+      'Site acquisition and underwriting',
+      'Design and permitting',
+      'Construction execution',
+      'Leasing or disposition',
+    ],
+  };
+  const investorAccessBlock = {
+    sectionTitle: 'Access to Opportunities',
+    headline: 'Stay Informed. Invest When Ready.',
+    description:
+      'We share select opportunities with our investor network as they become available. Each offering includes clear project details, timelines, and return expectations.',
+  };
+  const visibleProjects = projects.slice(0, visibleProjectCount);
+  const mapPoints = useMemo(() => locations, []);
 
   const updateForm = (section, field, value) => {
     setFormState((prev) => ({
@@ -159,10 +198,6 @@ function HomePage() {
     }
   };
 
-  const toggleFilterValue = (value, setter) => {
-    setter((prev) => (prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]));
-  };
-
   return (
     <>
       <section id="home" className="home-hero">
@@ -172,83 +207,21 @@ function HomePage() {
         <div className="home-hero-overlay" />
         <Container className="home-hero-inner">
           <div className="meta-line" style={{ color: '#ececec' }}>Westwood Homes</div>
-          <h1 className="home-hero-title">Build smarter on the land you already own.</h1>
+          <h1 className="home-hero-title">Crafting Homes That Define Your Future</h1>
           <p className="home-hero-subtitle">
-            Urban infill developer + builder across the Puget Sound—design, permits, construction, and execution under one roof.
+            Where Vision Meets Execution
           </p>
           <div className="home-hero-actions">
-            <a className="btn-main" href="#homeowners">Unlock my lot&apos;s potential</a>
+            <a className="btn-main" href="#services">Design + Build</a>
             <a className="btn-ghost" style={{ color: '#fff', borderColor: '#fff', background: 'rgba(255,255,255,0.1)' }} href="#investors">Join investor list</a>
           </div>
         </Container>
       </section>
 
-      <section className="section">
-        <Container>
-          <div className="section-header">
-            <h2>Our Value</h2>
-          </div>
-          <Row className="g-4 value-grid justify-content-center">
-            {valueItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Col md={6} lg={4} key={item.title} className="d-flex">
-                  <article className="card-min value-card display-only-tile">
-                    <span className="tile-icon"><Icon aria-hidden="true" /></span>
-                    <h3 className="value-card-title">{item.title}</h3>
-                    <p className="value-card-text">{item.text}</p>
-                  </article>
-                </Col>
-              );
-            })}
-          </Row>
-        </Container>
-      </section>
-
-      <section className="section section--alt">
-        <Container>
-          <div className="section-header"><h2>Proof</h2></div>
-          <Row className="g-4 proof-grid">
-            {proofItems.map((item) => (
-              <Col md={4} key={item.stat}>
-                <article className="card-min proof-card display-only-tile">
-                  <div className="proof-card-stat">{item.stat}</div>
-                  <p className="proof-card-detail">{item.detail}</p>
-                </article>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-
-      <section className="section">
-        <Container>
-          <div className="section-header">
-            <h2>Who we are</h2>
-            <p>Home now includes the key About content so visitors get the full picture in one place.</p>
-          </div>
-          <Row className="g-4 about-grid">
-            {aboutItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Col md={6} lg={4} key={item.title}>
-                  <article className="card-min about-card display-only-tile">
-                    <span className="tile-icon"><Icon aria-hidden="true" /></span>
-                    <h3 className="about-card-title">{item.title}</h3>
-                    <p className="about-card-text">{item.text}</p>
-                  </article>
-                </Col>
-              );
-            })}
-          </Row>
-        </Container>
-      </section>
-
       <section id="homeowners" className="section">
         <Container>
-          <div className="section-header">
+          <div className="section-header section-header--title-only">
             <h2>Homeowners</h2>
-            <p>Unlock potential, sell with confidence, and request a practical feasibility review in one place.</p>
           </div>
           <Row className="g-3">
             {homeownersCards.map((item) => {
@@ -258,7 +231,16 @@ function HomePage() {
                   <article className="card-min info-tile">
                     <span className="tile-icon"><Icon aria-hidden="true" /></span>
                     <h4>{item.title}</h4>
-                    <p>{item.text}</p>
+                    <h5 className="info-tile-headline">{item.headline}</h5>
+                    <p>{item.description}</p>
+                    <ul className="list-clean info-tile-list">
+                      {item.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                    <div className="section-actions">
+                      <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
+                    </div>
                   </article>
                 </Col>
               );
@@ -266,6 +248,7 @@ function HomePage() {
           </Row>
 
           <Form
+            id="homeowners-form"
             className="card-min form-card onepage-form"
             onSubmit={(event) => {
               event.preventDefault();
@@ -339,7 +322,7 @@ function HomePage() {
         <Container>
           <div className="section-header">
             <h2>Services</h2>
-            <p>One integrated team for planning, permitting strategy, and construction execution.</p>
+            <p>Whether you are at concept stage or ready to build, we provide practical support at every step.</p>
           </div>
           <Row className="g-3">
             {serviceItems.map((item) => {
@@ -349,15 +332,24 @@ function HomePage() {
                   <article className="card-min info-tile">
                     <span className="tile-icon"><Icon aria-hidden="true" /></span>
                     <h4>{item.title}</h4>
-                    <p>{item.text}</p>
+                    <h5 className="info-tile-headline">{item.headline}</h5>
+                    <p>{item.description}</p>
+                    <ul className="list-clean info-tile-list">
+                      {item.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                    <div className="section-actions">
+                      <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
+                    </div>
                   </article>
                 </Col>
               );
             })}
           </Row>
-          <div className="section-actions">
-            <a className="btn-main" href="#contact">Discuss a project</a>
-          </div>
+          <p className="service-closing-line">
+            No matter where you are in the process - idea, design, or ready to build - we meet you there and take you forward.
+          </p>
         </Container>
       </section>
 
@@ -365,24 +357,54 @@ function HomePage() {
         <Container>
           <div className="section-header">
             <h2>Investors</h2>
-            <p>Disciplined infill opportunities with clear underwriting and practical reporting.</p>
+            <p>
+              Build-to-sell and build-to-rent pathways, full execution by Westwood, and a simple way to join the list when you are ready.
+            </p>
           </div>
-          <Row className="g-3">
-            {investorOverview.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Col md={6} key={item.title}>
-                  <article className="card-min info-tile">
-                    <span className="tile-icon"><Icon aria-hidden="true" /></span>
-                    <h4>{item.title}</h4>
-                    <p>{item.text}</p>
-                  </article>
-                </Col>
-              );
-            })}
+
+          <Row className="g-3 investor-top-row">
+            {investorInvestmentCards.map((item) => (
+              <Col md={6} key={item.key}>
+                <article className="card-min investor-block">
+                  <p className="investor-block-kicker">{item.title}</p>
+                  <h3 className="investor-block-headline">{item.headline}</h3>
+                  <p>{item.description}</p>
+                  <p className="investor-highlights-label">Highlights</p>
+                  <ul className="list-clean investor-highlights-list">
+                    {item.highlights.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                </article>
+              </Col>
+            ))}
           </Row>
 
+          <article className="card-min investor-block investor-block-wide">
+            <p className="investor-block-kicker">{investorRoleBlock.sectionTitle}</p>
+            <h3 className="investor-block-headline">{investorRoleBlock.headline}</h3>
+            <p>{investorRoleBlock.description}</p>
+            <p className="investor-highlights-label">{investorRoleBlock.listTitle}</p>
+            <ul className="list-clean investor-highlights-list">
+              {investorRoleBlock.items.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="card-min investor-block investor-block-wide investor-access-block">
+            <p className="investor-block-kicker">{investorAccessBlock.sectionTitle}</p>
+            <h3 className="investor-block-headline">{investorAccessBlock.headline}</h3>
+            <p>{investorAccessBlock.description}</p>
+            <div className="section-actions">
+              <a className="btn-main" href="#investors-form">
+                Join the Investor List
+              </a>
+            </div>
+          </article>
+
           <Form
+            id="investors-form"
             className="card-min form-card onepage-form"
             onSubmit={(event) => {
               event.preventDefault();
@@ -449,67 +471,23 @@ function HomePage() {
         <Container>
           <div className="section-header">
             <h2>Projects</h2>
-            <p>Selected work across Seattle and the Eastside. Browse images and map locations.</p>
-          </div>
-          <div className="project-filter-panel card-min">
-            <div className="project-filter-head">
-              <div>
-                <div className="meta-line">Project filters</div>
-                <p className="project-filter-hint">Tip: You can select multiple property types.</p>
-              </div>
-              <button
-                type="button"
-                className="btn-ghost project-filter-reset"
-                onClick={() => {
-                  setSelectedPrograms([]);
-                }}
-              >
-                Reset filters
-              </button>
-            </div>
-
-            <div className="project-filter-group">
-              <div className="project-filter-label">Program</div>
-              <div className="project-chip-wrap">
-                {programFilters.map((program) => (
-                  <button
-                    key={program}
-                    type="button"
-                    className={`project-filter-chip ${selectedPrograms.includes(program) ? 'is-active' : ''}`}
-                    onClick={() => toggleFilterValue(program, setSelectedPrograms)}
-                  >
-                    {program}
-                  </button>
-                ))}
-              </div>
-              <p className="project-filter-count">{selectedPrograms.length} selected</p>
-            </div>
-          </div>
-
-          <div className="project-map-home-wrap">
-            <Suspense fallback={<div className="card-min map-placeholder">Loading map...</div>}>
-              <LazyProjectMap points={mapPoints} selectedSlug={selectedProjectSlug} onSelect={setSelectedProjectSlug} />
-            </Suspense>
-          </div>
-          <div className="projects-results-meta">
-            Showing {visibleProjects.length} of {filteredProjects.length} filtered projects ({projects.length} total)
+            <p>
+              With over a decade of experience, Westwood Homes has delivered 100+ new construction units and manages a growing portfolio of 100+ rental homes. Our projects span custom homes to multi-unit residential developments, executed across both build-to-sell and long-term hold strategies.
+            </p>
           </div>
           <Row className="g-4 featured-grid">
             {visibleProjects.map((project) => (
-              <Col md={6} lg={4} key={project.slug} onMouseEnter={() => setSelectedProjectSlug(project.slug)}>
+              <Col
+                md={6}
+                lg={4}
+                key={project.slug}
+                onMouseEnter={() => setSelectedProjectSlug(project.slug)}
+              >
                 <ProjectCard project={project} showAction={false} />
               </Col>
             ))}
-            {!filteredProjects.length ? (
-              <Col xs={12}>
-                <article className="card-min no-results-card">
-                  <h4>No projects match these filters</h4>
-                  <p>Try clearing one or both filters to see more projects.</p>
-                </article>
-              </Col>
-            ) : null}
           </Row>
-          {visibleProjects.length < filteredProjects.length ? (
+          {visibleProjects.length < projects.length ? (
             <div className="section-actions projects-load-more">
               <button
                 type="button"
@@ -520,6 +498,19 @@ function HomePage() {
               </button>
             </div>
           ) : null}
+
+          <div className="projects-map-block">
+            <h3 className="projects-map-title">Project locations</h3>
+            <div className="project-map-home-wrap">
+              <Suspense fallback={<div className="card-min map-placeholder">Loading map...</div>}>
+                <LazyProjectMap
+                  points={mapPoints}
+                  selectedSlug={selectedProjectSlug}
+                  onSelect={setSelectedProjectSlug}
+                />
+              </Suspense>
+            </div>
+          </div>
         </Container>
       </section>
 

@@ -48,6 +48,10 @@
   flex-wrap: wrap;
 }
 
+.section-header--title-only {
+  margin-bottom: 1.25rem;
+}
+
 .value-grid .card-min,
 .proof-grid .card-min,
 .about-grid .card-min,
@@ -170,6 +174,79 @@
   margin-top: 1.2rem;
 }
 
+.info-tile-headline {
+  font-size: 1.02rem;
+  margin-bottom: 0.55rem;
+}
+
+.info-tile-list {
+  margin-top: 0.5rem;
+}
+
+.info-tile-list li {
+  margin-bottom: 0.38rem;
+}
+
+.service-closing-line {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  font-size: 1.06rem;
+  font-weight: 500;
+  color: #232b33;
+}
+
+/* Investors: plain cards (no info-tile top accent line) */
+.investor-top-row {
+  margin-bottom: 0.25rem;
+}
+
+.investor-block {
+  height: 100%;
+  padding: 1.35rem 1.25rem;
+}
+
+.investor-block-wide {
+  margin-top: 1rem;
+}
+
+.investor-access-block {
+  margin-bottom: 0.25rem;
+}
+
+.investor-block-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5c6a76;
+  font-family: var(--font-sans, inherit);
+  font-weight: 600;
+}
+
+.investor-block .investor-block-headline {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.25rem, 2vw, 1.45rem);
+  line-height: 1.25;
+}
+
+.investor-highlights-label {
+  margin: 1rem 0 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #3d4852;
+  font-family: var(--font-sans, inherit);
+}
+
+.investor-highlights-list {
+  margin-bottom: 0;
+}
+
+.investor-highlights-list li:last-child {
+  margin-bottom: 0;
+}
+
 .onepage-form h4 {
   margin-bottom: 1rem;
 }
@@ -179,78 +256,24 @@
   color: #3a4855;
 }
 
+.projects-load-more {
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.projects-map-block {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e4e8;
+}
+
+.projects-map-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
 .project-map-home-wrap {
-  margin-bottom: 1.15rem;
-}
-
-.project-filter-panel {
-  margin-bottom: 1rem;
-  padding: 1rem;
-}
-
-.project-filter-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  margin-bottom: 0.9rem;
-}
-
-.project-filter-hint {
-  margin: 0.2rem 0 0;
-  font-size: 0.85rem;
-  color: #5d6974;
-}
-
-.project-filter-reset {
-  padding: 0.45rem 0.8rem;
-  border-radius: 10px;
-  font-size: 0.82rem;
-}
-
-.project-filter-group + .project-filter-group {
-  margin-top: 0.8rem;
-}
-
-.project-filter-label {
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #4f5b67;
-  margin-bottom: 0.5rem;
-}
-
-.project-chip-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.project-filter-chip {
-  border: 1px solid #c6ced5;
-  background: #fff;
-  color: #1f252c;
-  padding: 0.36rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  transition: all 0.2s ease;
-}
-
-.project-filter-chip:hover {
-  border-color: #9cabb8;
-  transform: translateY(-1px);
-}
-
-.project-filter-chip.is-active {
-  background: #1f242b;
-  border-color: #1f242b;
-  color: #fff;
-}
-
-.project-filter-count {
-  margin: 0.4rem 0 0;
-  font-size: 0.78rem;
-  color: #5a6672;
+  margin-top: 0.25rem;
 }
 
 .map-placeholder {
@@ -259,29 +282,6 @@
   align-items: center;
   justify-content: center;
   color: #55616e;
-}
-
-.projects-results-meta {
-  margin-bottom: 0.85rem;
-  color: #4a5662;
-  font-size: 0.9rem;
-}
-
-.projects-load-more {
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.no-results-card {
-  text-align: center;
-}
-
-.no-results-card h4 {
-  margin-bottom: 0.45rem;
-}
-
-.no-results-card p {
-  margin: 0;
 }
 
 .onepage-contact-links {

@@ -11,16 +11,15 @@ function Footer() {
         <div className="footer-grid">
           <div>
             <h4>Westwood Homes</h4>
-            <p>Builder mindset. Developer discipline.</p>
           </div>
           <div>
             <h5>Navigate</h5>
             <ul>
               <li><a href="#home">Home</a></li>
-              <li><a href="#homeowners">Homeowners</a></li>
               <li><a href="#services">Services</a></li>
               <li><a href="#investors">Investors</a></li>
               <li><a href="#projects">Projects</a></li>
+              <li><a href="#homeowners">Homeowners</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>

@@ -7,10 +7,10 @@ function NavigationBar() {
   const [expanded, setExpanded] = useState(false);
   const links = [
     { href: '#home', label: 'Home' },
-    { href: '#homeowners', label: 'Homeowners' },
     { href: '#services', label: 'Services' },
     { href: '#investors', label: 'Investors' },
     { href: '#projects', label: 'Projects' },
+    { href: '#homeowners', label: 'Homeowners' },
     { href: '#contact', label: 'Contact' },
   ];
 

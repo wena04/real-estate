@@ -1,7 +1,7 @@
 [
   {
     "slug": "se-44th-pl-single-family",
-    "displayName": "SE 44th PL Single Family",
+    "displayName": "44th Pl Single Family",
     "program": "Single Family",
     "status": "Completed",
     "city": "Bellevue",
@@ -14,7 +14,7 @@
   },
   {
     "slug": "se-44th-pl-residence-single-family",
-    "displayName": "SE 44th PL Residence Single Family",
+    "displayName": "44th Pl Residence Single Family",
     "program": "Single Family",
     "status": "Completed",
     "city": "Bellevue",
@@ -27,7 +27,7 @@
   },
   {
     "slug": "fairmount-ave-sw-dadu",
-    "displayName": "Fairmount Ave SW DADU",
+    "displayName": "Fairmount Ave DADU",
     "program": "DADU",
     "status": "Construction",
     "city": "Seattle",
@@ -40,7 +40,7 @@
   },
   {
     "slug": "mlk-jr-way-s-townhomes",
-    "displayName": "MLK Jr Way S Townhomes",
+    "displayName": "MLK Jr Way Townhomes",
     "program": "Townhomes",
     "status": "Completed",
     "city": "Seattle",
@@ -53,7 +53,7 @@
   },
   {
     "slug": "mlk-jr-way-s-townhomes-phase-2",
-    "displayName": "MLK Jr Way S Townhomes II",
+    "displayName": "MLK Jr Way Townhomes II",
     "program": "Townhomes",
     "status": "Construction",
     "city": "Seattle",
@@ -66,7 +66,7 @@
   },
   {
     "slug": "n-64th-st-townhomes",
-    "displayName": "N 64th St Townhomes",
+    "displayName": "64th St Townhomes",
     "program": "Townhomes",
     "status": "Completed",
     "city": "Seattle",
@@ -105,7 +105,7 @@
   },
   {
     "slug": "oberlin-ave-n-single-family",
-    "displayName": "Oberlin Ave N Single Family",
+    "displayName": "Oberlin Ave Single Family",
     "program": "Single Family",
     "status": "Construction",
     "city": "Seattle",
@@ -118,7 +118,7 @@
   },
   {
     "slug": "s-orcas-st-single-family",
-    "displayName": "S Orcas St Single Family",
+    "displayName": "Orcas St Single Family",
     "program": "Single Family",
     "status": "Feasibility",
     "city": "Seattle",
@@ -131,7 +131,7 @@
   },
   {
     "slug": "sw-trenton-st-townhomes",
-    "displayName": "SW Trenton St Townhomes",
+    "displayName": "Trenton St Townhomes",
     "program": "Townhomes",
     "status": "Completed",
     "city": "Seattle",
@@ -144,7 +144,7 @@
   },
   {
     "slug": "myrtle-st-s-dadu",
-    "displayName": "Myrtle St S DADU",
+    "displayName": "Myrtle St DADU",
     "program": "DADU",
     "status": "Completed",
     "city": "Seattle",
