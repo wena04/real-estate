@@ -12,6 +12,8 @@ const LazyProjectMap = lazy(() => import('../components/projects/ProjectMap'));
 
 function HomePage() {
   const heroVideoSrc = `${import.meta.env.BASE_URL}${String(siteContent.heroVideo || '').replace(/^\/+/, '')}`;
+  const servicesFeatureImageSrc = `${import.meta.env.BASE_URL}assets/sections/services/services-feature.png`;
+  const investorsFeatureImageSrc = `${import.meta.env.BASE_URL}assets/sections/investors/investors-feature.png`;
   const { contact } = siteContent;
   const [visibleProjectCount, setVisibleProjectCount] = useState(6);
   const [selectedProjectSlug, setSelectedProjectSlug] = useState('');
@@ -224,28 +226,44 @@ function HomePage() {
             <h2>Services</h2>
             <p>Whether you are at concept stage or ready to build, we provide practical support at every step.</p>
           </div>
-          <Row className="g-3">
-            {serviceItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Col md={6} lg={4} key={item.title}>
-                  <article className="card-min info-tile">
-                    <span className="tile-icon"><Icon aria-hidden="true" /></span>
-                    <h4>{item.title}</h4>
-                    <h5 className="info-tile-headline">{item.headline}</h5>
-                    <p>{item.description}</p>
-                    <ul className="list-clean info-tile-list">
-                      {item.bullets.map((bullet) => (
-                        <li key={bullet}>{bullet}</li>
-                      ))}
-                    </ul>
-                    <div className="section-actions">
-                      <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
-                    </div>
-                  </article>
-                </Col>
-              );
-            })}
+          <Row className="g-4 align-items-stretch services-feature-row">
+            <Col lg={7}>
+              <div className="services-feature-left">
+                <div className="services-compact-list">
+                  {serviceItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <article className="services-compact-item" key={item.title}>
+                        <span className="services-compact-icon"><Icon aria-hidden="true" /></span>
+                        <div className="services-compact-body">
+                          <h4 className="services-compact-title">{item.title}</h4>
+                          <p className="services-compact-headline">{item.headline}</p>
+                          <p className="services-compact-description">{item.description}</p>
+                          <ul className="list-clean services-compact-bullets">
+                            {item.bullets.map((bullet) => (
+                              <li key={bullet}>{bullet}</li>
+                            ))}
+                          </ul>
+                          <div className="services-compact-actions">
+                            <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
+            </Col>
+            <Col lg={5}>
+              <div className="section-media-block section-media-block--sticky">
+                <img
+                  className="section-media-image section-media-image--tall"
+                  src={servicesFeatureImageSrc}
+                  alt="Recent project aerial view"
+                  loading="lazy"
+                />
+              </div>
+            </Col>
           </Row>
           <p className="service-closing-line">
             No matter where you are in the process - idea, design, or ready to build - we meet you there and take you forward.
@@ -262,22 +280,36 @@ function HomePage() {
             </p>
           </div>
 
-          <Row className="g-3 investor-top-row">
-            {investorInvestmentCards.map((item) => (
-              <Col md={6} key={item.key}>
-                <article className="card-min investor-block">
-                  <p className="investor-block-kicker">{item.title}</p>
-                  <h3 className="investor-block-headline">{item.headline}</h3>
-                  <p>{item.description}</p>
-                  <p className="investor-highlights-label">Highlights</p>
-                  <ul className="list-clean investor-highlights-list">
-                    {item.highlights.map((line) => (
-                      <li key={line}>{line}</li>
-                    ))}
-                  </ul>
-                </article>
-              </Col>
-            ))}
+          <Row className="g-4 align-items-start investor-feature-row">
+            <Col lg={5}>
+              <div className="section-media-block section-media-block--tight investor-image-block">
+                <img
+                  className="section-media-image investor-image"
+                  src={investorsFeatureImageSrc}
+                  alt="New construction exterior at dusk"
+                  loading="lazy"
+                />
+              </div>
+            </Col>
+            <Col lg={7}>
+              <Row className="g-3 investor-top-row">
+                {investorInvestmentCards.map((item) => (
+                  <Col md={6} key={item.key}>
+                    <article className="card-min investor-block investor-block--compact">
+                      <p className="investor-block-kicker">{item.title}</p>
+                      <h3 className="investor-block-headline">{item.headline}</h3>
+                      <p>{item.description}</p>
+                      <p className="investor-highlights-label">Highlights</p>
+                      <ul className="list-clean investor-highlights-list">
+                        {item.highlights.map((line) => (
+                          <li key={line}>{line}</li>
+                        ))}
+                      </ul>
+                    </article>
+                  </Col>
+                ))}
+              </Row>
+            </Col>
           </Row>
 
           <article className="card-min investor-block investor-block-wide">
@@ -419,28 +451,40 @@ function HomePage() {
           <div className="section-header section-header--title-only">
             <h2>Homeowners</h2>
           </div>
-          <Row className="g-3">
-            {homeownersCards.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Col md={6} lg={4} key={item.title}>
-                  <article className="card-min info-tile">
-                    <span className="tile-icon"><Icon aria-hidden="true" /></span>
-                    <h4>{item.title}</h4>
-                    <h5 className="info-tile-headline">{item.headline}</h5>
-                    <p>{item.description}</p>
-                    <ul className="list-clean info-tile-list">
-                      {item.bullets.map((bullet) => (
-                        <li key={bullet}>{bullet}</li>
-                      ))}
-                    </ul>
-                    <div className="section-actions">
-                      <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
-                    </div>
-                  </article>
-                </Col>
-              );
-            })}
+          <Row className="g-3 homeowners-compact-row">
+            <Col lg={5}>
+              <article className="card-min homeowners-intro">
+                <h3 className="homeowners-intro-title">Options for your property</h3>
+                <p className="homeowners-intro-copy">
+                  Choose the path that best matches your goals — build for upside, sell simply, or start with a feasibility review before deciding.
+                </p>
+              </article>
+            </Col>
+            <Col lg={7}>
+              <div className="homeowners-compact-list">
+                {homeownersCards.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <article className="homeowners-compact-item" key={item.title}>
+                      <span className="homeowners-compact-icon"><Icon aria-hidden="true" /></span>
+                      <div className="homeowners-compact-body">
+                        <h4 className="homeowners-compact-title">{item.title}</h4>
+                        <p className="homeowners-compact-headline">{item.headline}</p>
+                        <p className="homeowners-compact-description">{item.description}</p>
+                        <ul className="list-clean homeowners-compact-bullets">
+                          {item.bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                          ))}
+                        </ul>
+                        <div className="homeowners-compact-actions">
+                          <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </Col>
           </Row>
 
           <Form
@@ -520,84 +564,90 @@ function HomePage() {
             <h2>Contact</h2>
             <p>Tell us about your project goals and timeline. We will follow up shortly.</p>
           </div>
-          <Form
-            className="card-min form-card onepage-form"
-            onSubmit={(event) => {
-              event.preventDefault();
-              handleSubmit('contact', () => ({
-                source: 'General Contact',
-                ...formState.contact,
-              }));
-            }}
-          >
-            <Row className="g-3">
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control value={formState.contact.name} onChange={(e) => updateForm('contact', 'name', e.target.value)} required />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" value={formState.contact.email} onChange={(e) => updateForm('contact', 'email', e.target.value)} required />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Phone</Form.Label>
-                  <Form.Control value={formState.contact.phone} onChange={(e) => updateForm('contact', 'phone', e.target.value)} />
-                </Form.Group>
-              </Col>
-              <Col md={12}>
-                <Form.Group>
-                  <Form.Label>Message</Form.Label>
-                  <Form.Control as="textarea" rows={5} value={formState.contact.message} onChange={(e) => updateForm('contact', 'message', e.target.value)} required />
-                </Form.Group>
-              </Col>
-            </Row>
-            <div className="section-actions">
-              <button className="btn-main" type="submit" disabled={submitStatus.contact.loading}>
-                {submitStatus.contact.loading ? 'Sending...' : 'Send inquiry'}
-              </button>
-            </div>
-            {submitStatus.contact.message ? <p className="form-feedback">{submitStatus.contact.message}</p> : null}
-          </Form>
-          <Row className="g-3 onepage-contact-links">
-            <Col md={4}>
-              <article className="card-min info-tile">
-                <h4>Phone</h4>
-                <p><a href={`tel:${contact.phoneHref}`}>{contact.phone}</a></p>
-                <button
-                  type="button"
-                  className="btn-ghost contact-action-btn"
-                  onClick={() => handleCopy('phone', contact.phone)}
-                >
-                  {copiedField === 'phone' ? 'Copied' : 'Copy phone'}
-                </button>
-              </article>
+          <Row className="g-4 contact-layout-row">
+            <Col lg={7}>
+              <Form
+                className="card-min form-card onepage-form contact-form-card"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  handleSubmit('contact', () => ({
+                    source: 'General Contact',
+                    ...formState.contact,
+                  }));
+                }}
+              >
+                <Row className="g-3">
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label>Name</Form.Label>
+                      <Form.Control value={formState.contact.name} onChange={(e) => updateForm('contact', 'name', e.target.value)} required />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control type="email" value={formState.contact.email} onChange={(e) => updateForm('contact', 'email', e.target.value)} required />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label>Phone</Form.Label>
+                      <Form.Control value={formState.contact.phone} onChange={(e) => updateForm('contact', 'phone', e.target.value)} />
+                    </Form.Group>
+                  </Col>
+                  <Col md={12}>
+                    <Form.Group>
+                      <Form.Label>Message</Form.Label>
+                      <Form.Control as="textarea" rows={5} value={formState.contact.message} onChange={(e) => updateForm('contact', 'message', e.target.value)} required />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <div className="section-actions">
+                  <button className="btn-main" type="submit" disabled={submitStatus.contact.loading}>
+                    {submitStatus.contact.loading ? 'Sending...' : 'Send inquiry'}
+                  </button>
+                </div>
+                {submitStatus.contact.message ? <p className="form-feedback">{submitStatus.contact.message}</p> : null}
+              </Form>
             </Col>
-            <Col md={4}>
-              <article className="card-min info-tile">
-                <h4>Email</h4>
-                <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
-                <button
-                  type="button"
-                  className="btn-ghost contact-action-btn"
-                  onClick={() => handleCopy('email', contact.email)}
-                >
-                  {copiedField === 'email' ? 'Copied' : 'Copy email'}
-                </button>
-              </article>
-            </Col>
-            <Col md={4}>
-              <article className="card-min info-tile">
-                <h4>Office</h4>
-                <p><a href={contact.mapUrl} target="_blank" rel="noreferrer">{contact.addressFull}</a></p>
-                <a href={contact.mapUrl} target="_blank" rel="noreferrer" className="btn-main contact-action-btn">
-                  Get directions
-                </a>
-              </article>
+            <Col lg={5}>
+              <div className="card-min contact-quick-card">
+                <div className="contact-quick-item">
+                  <div className="contact-quick-label">Phone</div>
+                  <div className="contact-quick-value">
+                    <a href={`tel:${contact.phoneHref}`}>{contact.phone}</a>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn-ghost contact-action-btn"
+                    onClick={() => handleCopy('phone', contact.phone)}
+                  >
+                    {copiedField === 'phone' ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <div className="contact-quick-item">
+                  <div className="contact-quick-label">Email</div>
+                  <div className="contact-quick-value">
+                    <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn-ghost contact-action-btn"
+                    onClick={() => handleCopy('email', contact.email)}
+                  >
+                    {copiedField === 'email' ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <div className="contact-quick-item contact-quick-item--stack">
+                  <div className="contact-quick-label">Office</div>
+                  <div className="contact-quick-value">
+                    <a href={contact.mapUrl} target="_blank" rel="noreferrer">{contact.addressFull}</a>
+                  </div>
+                  <a href={contact.mapUrl} target="_blank" rel="noreferrer" className="btn-main contact-action-btn">
+                    Get directions
+                  </a>
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>
