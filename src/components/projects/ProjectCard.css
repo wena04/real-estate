@@ -68,6 +68,12 @@
   margin-bottom: 0.15rem;
 }
 
+.project-card-title--accent {
+  color: #b64a4a;
+  font-style: italic;
+  font-weight: 500;
+}
+
 .project-card .btn-ghost {
   margin-top: auto;
   width: fit-content;

@@ -3,6 +3,7 @@ import './ProjectCard.css';
 function ProjectCard({ project }) {
   const imageSrc = `${import.meta.env.BASE_URL}${String(project.coverImage || '').replace(/^\/+/, '')}`;
   const hoverCopy = `${project.program}`;
+  const accent = project.cardTagline || '';
 
   return (
     <article className="card-min project-card">
@@ -20,7 +21,9 @@ function ProjectCard({ project }) {
         </div>
       </div>
       <div className="meta-line">{project.program}</div>
-      <h4 className="project-card-title">{project.displayName}</h4>
+      <h4 className="project-card-title project-card-title--accent">
+        {accent || project.displayName}
+      </h4>
     </article>
   );
 }
