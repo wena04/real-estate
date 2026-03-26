@@ -564,92 +564,92 @@ function HomePage() {
             <h2>Contact</h2>
             <p>Tell us about your project goals and timeline. We will follow up shortly.</p>
           </div>
-          <Row className="g-4 contact-layout-row">
-            <Col lg={7}>
-              <Form
-                className="card-min form-card onepage-form contact-form-card"
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  handleSubmit('contact', () => ({
-                    source: 'General Contact',
-                    ...formState.contact,
-                  }));
-                }}
-              >
-                <Row className="g-3">
-                  <Col md={6}>
-                    <Form.Group>
-                      <Form.Label>Name</Form.Label>
-                      <Form.Control value={formState.contact.name} onChange={(e) => updateForm('contact', 'name', e.target.value)} required />
-                    </Form.Group>
-                  </Col>
-                  <Col md={6}>
-                    <Form.Group>
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control type="email" value={formState.contact.email} onChange={(e) => updateForm('contact', 'email', e.target.value)} required />
-                    </Form.Group>
-                  </Col>
-                  <Col md={6}>
-                    <Form.Group>
-                      <Form.Label>Phone</Form.Label>
-                      <Form.Control value={formState.contact.phone} onChange={(e) => updateForm('contact', 'phone', e.target.value)} />
-                    </Form.Group>
-                  </Col>
-                  <Col md={12}>
-                    <Form.Group>
-                      <Form.Label>Message</Form.Label>
-                      <Form.Control as="textarea" rows={5} value={formState.contact.message} onChange={(e) => updateForm('contact', 'message', e.target.value)} required />
-                    </Form.Group>
-                  </Col>
-                </Row>
-                <div className="section-actions">
-                  <button className="btn-main" type="submit" disabled={submitStatus.contact.loading}>
-                    {submitStatus.contact.loading ? 'Sending...' : 'Send inquiry'}
-                  </button>
-                </div>
-                {submitStatus.contact.message ? <p className="form-feedback">{submitStatus.contact.message}</p> : null}
-              </Form>
-            </Col>
-            <Col lg={5}>
-              <div className="card-min contact-quick-card">
-                <div className="contact-quick-item">
-                  <div className="contact-quick-label">Phone</div>
-                  <div className="contact-quick-value">
+          <div className="card-min form-card onepage-form contact-unified-card">
+            <Form
+              onSubmit={(event) => {
+                event.preventDefault();
+                handleSubmit('contact', () => ({
+                  source: 'General Contact',
+                  ...formState.contact,
+                }));
+              }}
+            >
+              <Row className="g-3">
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control value={formState.contact.name} onChange={(e) => updateForm('contact', 'name', e.target.value)} required />
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="email" value={formState.contact.email} onChange={(e) => updateForm('contact', 'email', e.target.value)} required />
+                  </Form.Group>
+                </Col>
+                <Col md={12}>
+                  <Form.Group>
+                    <Form.Label>Message</Form.Label>
+                    <Form.Control as="textarea" rows={4} value={formState.contact.message} onChange={(e) => updateForm('contact', 'message', e.target.value)} required />
+                  </Form.Group>
+                </Col>
+                <Col md={6} lg={5}>
+                  <Form.Group>
+                    <Form.Label>
+                      Phone <span className="contact-label-muted">(optional)</span>
+                    </Form.Label>
+                    <Form.Control value={formState.contact.phone} onChange={(e) => updateForm('contact', 'phone', e.target.value)} />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <div className="section-actions contact-form-actions">
+                <button className="btn-main" type="submit" disabled={submitStatus.contact.loading}>
+                  {submitStatus.contact.loading ? 'Sending...' : 'Send inquiry'}
+                </button>
+              </div>
+              {submitStatus.contact.message ? <p className="form-feedback">{submitStatus.contact.message}</p> : null}
+            </Form>
+
+            <div className="contact-unified-footer" aria-label="Contact details">
+              <div className="contact-footer-grid">
+                <div className="contact-footer-slot">
+                  <span className="contact-footer-kicker">Phone</span>
+                  <div className="contact-footer-line">
                     <a href={`tel:${contact.phoneHref}`}>{contact.phone}</a>
+                    <button
+                      type="button"
+                      className="btn-ghost contact-footer-copy"
+                      onClick={() => handleCopy('phone', contact.phone)}
+                    >
+                      {copiedField === 'phone' ? 'Copied' : 'Copy'}
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    className="btn-ghost contact-action-btn"
-                    onClick={() => handleCopy('phone', contact.phone)}
-                  >
-                    {copiedField === 'phone' ? 'Copied' : 'Copy'}
-                  </button>
                 </div>
-                <div className="contact-quick-item">
-                  <div className="contact-quick-label">Email</div>
-                  <div className="contact-quick-value">
+                <div className="contact-footer-slot">
+                  <span className="contact-footer-kicker">Email</span>
+                  <div className="contact-footer-line">
                     <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                    <button
+                      type="button"
+                      className="btn-ghost contact-footer-copy"
+                      onClick={() => handleCopy('email', contact.email)}
+                    >
+                      {copiedField === 'email' ? 'Copied' : 'Copy'}
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    className="btn-ghost contact-action-btn"
-                    onClick={() => handleCopy('email', contact.email)}
-                  >
-                    {copiedField === 'email' ? 'Copied' : 'Copy'}
-                  </button>
                 </div>
-                <div className="contact-quick-item contact-quick-item--stack">
-                  <div className="contact-quick-label">Office</div>
-                  <div className="contact-quick-value">
-                    <a href={contact.mapUrl} target="_blank" rel="noreferrer">{contact.addressFull}</a>
+                <div className="contact-footer-slot contact-footer-slot--wide">
+                  <span className="contact-footer-kicker">Office</span>
+                  <div className="contact-footer-line contact-footer-line--office">
+                    <a href={contact.mapUrl} target="_blank" rel="noreferrer" className="contact-footer-address">{contact.addressFull}</a>
+                    <a href={contact.mapUrl} target="_blank" rel="noreferrer" className="btn-main contact-directions-btn">
+                      Get directions
+                    </a>
                   </div>
-                  <a href={contact.mapUrl} target="_blank" rel="noreferrer" className="btn-main contact-action-btn">
-                    Get directions
-                  </a>
                 </div>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Container>
       </section>
     </>
