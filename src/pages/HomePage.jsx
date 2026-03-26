@@ -10,23 +10,23 @@ import './HomePage.css';
 
 const LazyProjectMap = lazy(() => import('../components/projects/ProjectMap'));
 
+const CONTACT_CTA_LABEL = 'Contact us';
+const INQUIRY_SUBMIT_LABEL = 'Send inquiry';
+
 function HomePage() {
   const heroVideoSrc = `${import.meta.env.BASE_URL}${String(siteContent.heroVideo || '').replace(/^\/+/, '')}`;
   const servicesFeatureImageSrc = `${import.meta.env.BASE_URL}assets/sections/services/services-feature.png`;
   const investorsFeatureImageSrc = `${import.meta.env.BASE_URL}assets/sections/investors/investors-feature.png`;
-  const { contact } = siteContent;
+  const homeownersFeatureImageSrc = `${import.meta.env.BASE_URL}assets/projects/n-64th-st-townhomes/cover-facade.png`;
   const [visibleProjectCount, setVisibleProjectCount] = useState(6);
   const [selectedProjectSlug, setSelectedProjectSlug] = useState('');
-  const [copiedField, setCopiedField] = useState('');
   const [formState, setFormState] = useState({
     homeowners: { address: '', photos: '', goal: '', timing: '', email: '', name: '', phone: '' },
     investors: { name: '', email: '', accredited: '', checkSize: '', preference: '', timeline: '' },
-    contact: { name: '', email: '', phone: '', message: '' },
   });
   const [submitStatus, setSubmitStatus] = useState({
     homeowners: { loading: false, message: '' },
     investors: { loading: false, message: '' },
-    contact: { loading: false, message: '' },
   });
   const homeownersCards = [
     {
@@ -39,8 +39,6 @@ function HomePage() {
         'Increase property value and equity',
         'Full-lot development for maximum return',
       ],
-      cta: 'Explore Development Options',
-      ctaHref: '#homeowners-form',
       icon: FiTrendingUp,
     },
     {
@@ -53,8 +51,6 @@ function HomePage() {
         'No construction or permitting hassle',
         'Sell as-is',
       ],
-      cta: 'Get a Direct Offer',
-      ctaHref: '#contact',
       icon: FiCompass,
     },
     {
@@ -67,8 +63,6 @@ function HomePage() {
         'Preliminary cost and ROI analysis',
         'Clear, data-driven recommendations',
       ],
-      cta: 'Start with Feasibility Analysis',
-      ctaHref: '#homeowners-form',
       icon: FiActivity,
     },
   ];
@@ -82,8 +76,6 @@ function HomePage() {
         'Align design with budget and constructability',
         'Navigate city requirements and permitting process',
       ],
-      cta: 'Start Your Design Process',
-      ctaHref: '#contact',
       icon: FiEdit3,
     },
     {
@@ -95,8 +87,6 @@ function HomePage() {
         'Experienced subcontractor network',
         'Clear timeline and cost control',
       ],
-      cta: 'Build With Us',
-      ctaHref: '#contact',
       icon: FiTool,
     },
     {
@@ -108,8 +98,6 @@ function HomePage() {
         'Cost and return projections',
         'Flexible exit options after permitting',
       ],
-      cta: 'Evaluate My Project',
-      ctaHref: '#homeowners-form',
       icon: FiBarChart2,
     },
   ];
@@ -189,16 +177,6 @@ function HomePage() {
     }
   };
 
-  const handleCopy = async (key, value) => {
-    if (!value) return;
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopiedField(key);
-      window.setTimeout(() => setCopiedField((prev) => (prev === key ? '' : prev)), 1600);
-    } catch {
-      setCopiedField('');
-    }
-  };
 
   return (
     <>
@@ -215,7 +193,13 @@ function HomePage() {
           </p>
           <div className="home-hero-actions">
             <a className="btn-main" href="#services">Design + Build</a>
-            <a className="btn-ghost" style={{ color: '#fff', borderColor: '#fff', background: 'rgba(255,255,255,0.1)' }} href="#investors">Join investor list</a>
+            <a
+              className="btn-ghost"
+              style={{ color: '#fff', borderColor: '#fff', background: 'rgba(255,255,255,0.1)' }}
+              href="#investors"
+            >
+              Join investor list
+            </a>
           </div>
         </Container>
       </section>
@@ -226,9 +210,17 @@ function HomePage() {
             <h2>Services</h2>
             <p>Whether you are at concept stage or ready to build, we provide practical support at every step.</p>
           </div>
-          <Row className="g-4 align-items-stretch services-feature-row">
-            <Col lg={7}>
-              <div className="services-feature-left">
+          <div className="section-media-block section-band-media">
+            <img
+              className="section-band-media-image"
+              src={servicesFeatureImageSrc}
+              alt="Recent project aerial view"
+              loading="lazy"
+            />
+          </div>
+          <div className="services-stack-body services-feature-row">
+            <div className="services-feature-left">
+              <div className="card-min services-unified-card">
                 <div className="services-compact-list">
                   {serviceItems.map((item) => {
                     const Icon = item.icon;
@@ -244,30 +236,20 @@ function HomePage() {
                               <li key={bullet}>{bullet}</li>
                             ))}
                           </ul>
-                          <div className="services-compact-actions">
-                            <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
-                          </div>
                         </div>
                       </article>
                     );
                   })}
                 </div>
               </div>
-            </Col>
-            <Col lg={5}>
-              <div className="section-media-block section-media-block--sticky">
-                <img
-                  className="section-media-image section-media-image--tall"
-                  src={servicesFeatureImageSrc}
-                  alt="Recent project aerial view"
-                  loading="lazy"
-                />
+              <p className="service-closing-line">
+                No matter where you are in the process - idea, design, or ready to build - we meet you there and take you forward.
+              </p>
+              <div className="section-actions services-text-cta">
+                <a className="btn-main" href="#contact">{CONTACT_CTA_LABEL}</a>
               </div>
-            </Col>
-          </Row>
-          <p className="service-closing-line">
-            No matter where you are in the process - idea, design, or ready to build - we meet you there and take you forward.
-          </p>
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -280,36 +262,30 @@ function HomePage() {
             </p>
           </div>
 
-          <Row className="g-4 align-items-start investor-feature-row">
-            <Col lg={5}>
-              <div className="section-media-block section-media-block--tight investor-image-block">
-                <img
-                  className="section-media-image investor-image"
-                  src={investorsFeatureImageSrc}
-                  alt="New construction exterior at dusk"
-                  loading="lazy"
-                />
-              </div>
-            </Col>
-            <Col lg={7}>
-              <Row className="g-3 investor-top-row">
-                {investorInvestmentCards.map((item) => (
-                  <Col md={6} key={item.key}>
-                    <article className="card-min investor-block investor-block--compact">
-                      <p className="investor-block-kicker">{item.title}</p>
-                      <h3 className="investor-block-headline">{item.headline}</h3>
-                      <p>{item.description}</p>
-                      <p className="investor-highlights-label">Highlights</p>
-                      <ul className="list-clean investor-highlights-list">
-                        {item.highlights.map((line) => (
-                          <li key={line}>{line}</li>
-                        ))}
-                      </ul>
-                    </article>
-                  </Col>
-                ))}
-              </Row>
-            </Col>
+          <div className="section-media-block section-band-media">
+            <img
+              className="section-band-media-image"
+              src={investorsFeatureImageSrc}
+              alt="New construction exterior at dusk"
+              loading="lazy"
+            />
+          </div>
+          <Row className="g-3 investor-top-row investor-feature-row">
+            {investorInvestmentCards.map((item) => (
+              <Col md={6} key={item.key}>
+                <article className="card-min investor-block investor-block--compact">
+                  <p className="investor-block-kicker">{item.title}</p>
+                  <h3 className="investor-block-headline">{item.headline}</h3>
+                  <p>{item.description}</p>
+                  <p className="investor-highlights-label">Highlights</p>
+                  <ul className="list-clean investor-highlights-list">
+                    {item.highlights.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                </article>
+              </Col>
+            ))}
           </Row>
 
           <article className="card-min investor-block investor-block-wide">
@@ -328,11 +304,6 @@ function HomePage() {
             <p className="investor-block-kicker">{investorAccessBlock.sectionTitle}</p>
             <h3 className="investor-block-headline">{investorAccessBlock.headline}</h3>
             <p>{investorAccessBlock.description}</p>
-            <div className="section-actions">
-              <a className="btn-main" href="#investors-form">
-                Join the Investor List
-              </a>
-            </div>
           </article>
 
           <Form
@@ -391,7 +362,7 @@ function HomePage() {
             </Row>
             <div className="section-actions">
               <button className="btn-main" type="submit" disabled={submitStatus.investors.loading}>
-                {submitStatus.investors.loading ? 'Sending...' : 'Join investor list'}
+                {submitStatus.investors.loading ? 'Sending...' : INQUIRY_SUBMIT_LABEL}
               </button>
             </div>
             {submitStatus.investors.message ? <p className="form-feedback">{submitStatus.investors.message}</p> : null}
@@ -443,6 +414,9 @@ function HomePage() {
               </Suspense>
             </div>
           </div>
+          <div className="section-actions projects-section-cta">
+            <a className="btn-main" href="#contact">{CONTACT_CTA_LABEL}</a>
+          </div>
         </Container>
       </section>
 
@@ -451,41 +425,46 @@ function HomePage() {
           <div className="section-header section-header--title-only">
             <h2>Homeowners</h2>
           </div>
-          <Row className="g-3 homeowners-compact-row">
-            <Col lg={5}>
+          <div className="section-media-block section-band-media">
+            <img
+              className="section-band-media-image"
+              src={homeownersFeatureImageSrc}
+              alt="Westwood townhome development exterior"
+              loading="lazy"
+            />
+          </div>
+          <div className="homeowners-stack-body homeowners-compact-row">
+            <div className="homeowners-zigzag-copy">
               <article className="card-min homeowners-intro">
                 <h3 className="homeowners-intro-title">Options for your property</h3>
                 <p className="homeowners-intro-copy">
                   Choose the path that best matches your goals — build for upside, sell simply, or start with a feasibility review before deciding.
                 </p>
               </article>
-            </Col>
-            <Col lg={7}>
-              <div className="homeowners-compact-list">
-                {homeownersCards.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <article className="homeowners-compact-item" key={item.title}>
-                      <span className="homeowners-compact-icon"><Icon aria-hidden="true" /></span>
-                      <div className="homeowners-compact-body">
-                        <h4 className="homeowners-compact-title">{item.title}</h4>
-                        <p className="homeowners-compact-headline">{item.headline}</p>
-                        <p className="homeowners-compact-description">{item.description}</p>
-                        <ul className="list-clean homeowners-compact-bullets">
-                          {item.bullets.map((bullet) => (
-                            <li key={bullet}>{bullet}</li>
-                          ))}
-                        </ul>
-                        <div className="homeowners-compact-actions">
-                          <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
+              <div className="card-min homeowners-unified-card homeowners-zigzag-unified">
+                <div className="homeowners-compact-list">
+                  {homeownersCards.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <article className="homeowners-compact-item" key={item.title}>
+                        <span className="homeowners-compact-icon"><Icon aria-hidden="true" /></span>
+                        <div className="homeowners-compact-body">
+                          <h4 className="homeowners-compact-title">{item.title}</h4>
+                          <p className="homeowners-compact-headline">{item.headline}</p>
+                          <p className="homeowners-compact-description">{item.description}</p>
+                          <ul className="list-clean homeowners-compact-bullets">
+                            {item.bullets.map((bullet) => (
+                              <li key={bullet}>{bullet}</li>
+                            ))}
+                          </ul>
                         </div>
-                      </div>
-                    </article>
-                  );
-                })}
+                      </article>
+                    );
+                  })}
+                </div>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
 
           <Form
             id="homeowners-form"
@@ -550,7 +529,7 @@ function HomePage() {
             </Row>
             <div className="section-actions">
               <button className="btn-main" type="submit" disabled={submitStatus.homeowners.loading}>
-                {submitStatus.homeowners.loading ? 'Sending...' : 'Submit feasibility request'}
+                {submitStatus.homeowners.loading ? 'Sending...' : INQUIRY_SUBMIT_LABEL}
               </button>
             </div>
             {submitStatus.homeowners.message ? <p className="form-feedback">{submitStatus.homeowners.message}</p> : null}
@@ -558,100 +537,6 @@ function HomePage() {
         </Container>
       </section>
 
-      <section id="contact" className="section">
-        <Container>
-          <div className="section-header">
-            <h2>Contact</h2>
-            <p>Tell us about your project goals and timeline. We will follow up shortly.</p>
-          </div>
-          <div className="card-min form-card onepage-form contact-unified-card">
-            <Form
-              onSubmit={(event) => {
-                event.preventDefault();
-                handleSubmit('contact', () => ({
-                  source: 'General Contact',
-                  ...formState.contact,
-                }));
-              }}
-            >
-              <Row className="g-3">
-                <Col md={6}>
-                  <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control value={formState.contact.name} onChange={(e) => updateForm('contact', 'name', e.target.value)} required />
-                  </Form.Group>
-                </Col>
-                <Col md={6}>
-                  <Form.Group>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" value={formState.contact.email} onChange={(e) => updateForm('contact', 'email', e.target.value)} required />
-                  </Form.Group>
-                </Col>
-                <Col md={12}>
-                  <Form.Group>
-                    <Form.Label>Message</Form.Label>
-                    <Form.Control as="textarea" rows={3} value={formState.contact.message} onChange={(e) => updateForm('contact', 'message', e.target.value)} required />
-                  </Form.Group>
-                </Col>
-                <Col md={6} lg={5}>
-                  <Form.Group>
-                    <Form.Label>
-                      Phone <span className="contact-label-muted">(optional)</span>
-                    </Form.Label>
-                    <Form.Control value={formState.contact.phone} onChange={(e) => updateForm('contact', 'phone', e.target.value)} />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <div className="section-actions contact-form-actions">
-                <button className="btn-main" type="submit" disabled={submitStatus.contact.loading}>
-                  {submitStatus.contact.loading ? 'Sending...' : 'Send inquiry'}
-                </button>
-              </div>
-              {submitStatus.contact.message ? <p className="form-feedback">{submitStatus.contact.message}</p> : null}
-            </Form>
-
-            <div className="contact-unified-footer" aria-label="Contact details">
-              <div className="contact-footer-grid">
-                <div className="contact-footer-slot">
-                  <span className="contact-footer-kicker">Phone</span>
-                  <div className="contact-footer-line">
-                    <a href={`tel:${contact.phoneHref}`}>{contact.phone}</a>
-                    <button
-                      type="button"
-                      className="btn-ghost contact-footer-copy"
-                      onClick={() => handleCopy('phone', contact.phone)}
-                    >
-                      {copiedField === 'phone' ? 'Copied' : 'Copy'}
-                    </button>
-                  </div>
-                </div>
-                <div className="contact-footer-slot">
-                  <span className="contact-footer-kicker">Email</span>
-                  <div className="contact-footer-line">
-                    <a href={`mailto:${contact.email}`}>{contact.email}</a>
-                    <button
-                      type="button"
-                      className="btn-ghost contact-footer-copy"
-                      onClick={() => handleCopy('email', contact.email)}
-                    >
-                      {copiedField === 'email' ? 'Copied' : 'Copy'}
-                    </button>
-                  </div>
-                </div>
-                <div className="contact-footer-slot contact-footer-slot--wide">
-                  <span className="contact-footer-kicker">Office</span>
-                  <div className="contact-footer-line contact-footer-line--office">
-                    <a href={contact.mapUrl} target="_blank" rel="noreferrer" className="contact-footer-address">{contact.addressFull}</a>
-                    <a href={contact.mapUrl} target="_blank" rel="noreferrer" className="btn-main contact-directions-btn">
-                      Get directions
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
     </>
   );
 }
