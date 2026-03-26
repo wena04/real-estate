@@ -590,7 +590,7 @@ function HomePage() {
                 <Col md={12}>
                   <Form.Group>
                     <Form.Label>Message</Form.Label>
-                    <Form.Control as="textarea" rows={4} value={formState.contact.message} onChange={(e) => updateForm('contact', 'message', e.target.value)} required />
+                    <Form.Control as="textarea" rows={3} value={formState.contact.message} onChange={(e) => updateForm('contact', 'message', e.target.value)} required />
                   </Form.Group>
                 </Col>
                 <Col md={6} lg={5}>

@@ -510,10 +510,13 @@
 }
 
 .contact-unified-card {
-  max-width: 900px;
-  margin-left: auto;
+  max-width: min(680px, 100%);
+  margin-left: 0;
   margin-right: auto;
-  padding-bottom: 0.25rem;
+  padding: 1.05rem 1.15rem 0.95rem;
+  background: #ebedf0;
+  border-color: #d2d7dd;
+  box-shadow: 0 8px 22px rgba(18, 26, 34, 0.07);
 }
 
 .contact-form-actions {
@@ -527,9 +530,9 @@
 }
 
 .contact-unified-footer {
-  margin-top: 1.35rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid #e3e7ea;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(31, 36, 43, 0.12);
 }
 
 .contact-footer-grid {
