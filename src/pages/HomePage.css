@@ -569,6 +569,17 @@
   border-bottom-color: rgba(31, 36, 43, 0.45);
 }
 
+
+.contact-footer-line a.btn-main {
+  color: #fff;
+  border-bottom: none;
+}
+
+.contact-footer-line a.btn-main:hover {
+  color: #fff;
+  border-bottom: none;
+}
+
 .contact-footer-copy {
   padding: 0.32rem 0.65rem;
   border-radius: 8px;
