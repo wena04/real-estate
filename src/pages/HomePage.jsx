@@ -15,14 +15,14 @@ const INQUIRY_SUBMIT_LABEL = 'Send inquiry';
 
 function HomePage() {
   const heroVideoSrc = `${import.meta.env.BASE_URL}${String(siteContent.heroVideo || '').replace(/^\/+/, '')}`;
-  const servicesFeatureImageSrc = `${import.meta.env.BASE_URL}assets/sections/services/services-feature.png`;
-  const investorsFeatureImageSrc = `${import.meta.env.BASE_URL}assets/sections/investors/investors-feature.png`;
-  const homeownersFeatureImageSrc = `${import.meta.env.BASE_URL}assets/projects/n-64th-st-townhomes/cover-facade.png`;
+  const servicesFeatureImageSrc = `${import.meta.env.BASE_URL}assets/sections/services/services-feature.jpg?v=2`;
+  const investorsFeatureImageSrc = `${import.meta.env.BASE_URL}assets/sections/investors/investors-feature.jpg?v=2`;
+  const homeownersFeatureImageSrc = `${import.meta.env.BASE_URL}assets/projects/n-64th-st-townhomes/cover-facade.png?v=2`;
   const [visibleProjectCount, setVisibleProjectCount] = useState(6);
   const [selectedProjectSlug, setSelectedProjectSlug] = useState('');
   const [formState, setFormState] = useState({
     homeowners: { address: '', photos: '', goal: '', timing: '', email: '', name: '', phone: '' },
-    investors: { name: '', email: '', accredited: '', checkSize: '', preference: '', timeline: '' },
+    investors: { name: '', email: '' },
   });
   const [submitStatus, setSubmitStatus] = useState({
     homeowners: { loading: false, message: '' },
@@ -64,6 +64,8 @@ function HomePage() {
         'Clear, data-driven recommendations',
       ],
       icon: FiActivity,
+      ctaHref: '#contact',
+      ctaLabel: CONTACT_CTA_LABEL,
     },
   ];
   const serviceItems = [
@@ -176,7 +178,6 @@ function HomePage() {
       setSectionStatus(section, false, error.message || 'Unable to send right now.');
     }
   };
-
 
   return (
     <>
@@ -300,24 +301,19 @@ function HomePage() {
             </ul>
           </article>
 
-          <article className="card-min investor-block investor-block-wide investor-access-block">
-            <p className="investor-block-kicker">{investorAccessBlock.sectionTitle}</p>
-            <h3 className="investor-block-headline">{investorAccessBlock.headline}</h3>
-            <p>{investorAccessBlock.description}</p>
-          </article>
-
           <Form
             id="investors-form"
             className="card-min form-card onepage-form"
             onSubmit={(event) => {
               event.preventDefault();
               handleSubmit('investors', () => ({
-                source: 'Investor Join Request',
+                source: 'Investor List Signup',
                 ...formState.investors,
               }));
             }}
           >
-            <h4>Join investor list</h4>
+            <h4>{investorAccessBlock.headline}</h4>
+            <p>{investorAccessBlock.description}</p>
             <Row className="g-3">
               <Col md={6}>
                 <Form.Group>
@@ -329,34 +325,6 @@ function HomePage() {
                 <Form.Group>
                   <Form.Label>Email</Form.Label>
                   <Form.Control type="email" value={formState.investors.email} onChange={(e) => updateForm('investors', 'email', e.target.value)} required />
-                </Form.Group>
-              </Col>
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Label>Accredited</Form.Label>
-                  <Form.Select value={formState.investors.accredited} onChange={(e) => updateForm('investors', 'accredited', e.target.value)}>
-                    <option value="">Select</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </Form.Select>
-                </Form.Group>
-              </Col>
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Label>Target check size</Form.Label>
-                  <Form.Control value={formState.investors.checkSize} onChange={(e) => updateForm('investors', 'checkSize', e.target.value)} />
-                </Form.Group>
-              </Col>
-              <Col md={4}>
-                <Form.Group>
-                  <Form.Label>Timeline</Form.Label>
-                  <Form.Control value={formState.investors.timeline} onChange={(e) => updateForm('investors', 'timeline', e.target.value)} />
-                </Form.Group>
-              </Col>
-              <Col md={12}>
-                <Form.Group>
-                  <Form.Label>Return preference</Form.Label>
-                  <Form.Control value={formState.investors.preference} onChange={(e) => updateForm('investors', 'preference', e.target.value)} />
                 </Form.Group>
               </Col>
             </Row>
@@ -457,6 +425,11 @@ function HomePage() {
                               <li key={bullet}>{bullet}</li>
                             ))}
                           </ul>
+                          {item.ctaHref ? (
+                            <div className="homeowners-inline-cta">
+                              <a className="btn-ghost" href={item.ctaHref}>{item.ctaLabel}</a>
+                            </div>
+                          ) : null}
                         </div>
                       </article>
                     );
@@ -465,75 +438,6 @@ function HomePage() {
               </div>
             </div>
           </div>
-
-          <Form
-            id="homeowners-form"
-            className="card-min form-card onepage-form"
-            onSubmit={(event) => {
-              event.preventDefault();
-              handleSubmit('homeowners', () => ({
-                source: 'Homeowners Feasibility Review',
-                ...formState.homeowners,
-              }));
-            }}
-          >
-            <h4>Start feasibility review</h4>
-            <Row className="g-3">
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control value={formState.homeowners.name} onChange={(e) => updateForm('homeowners', 'name', e.target.value)} required />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" value={formState.homeowners.email} onChange={(e) => updateForm('homeowners', 'email', e.target.value)} required />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Phone</Form.Label>
-                  <Form.Control value={formState.homeowners.phone} onChange={(e) => updateForm('homeowners', 'phone', e.target.value)} />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Property address</Form.Label>
-                  <Form.Control value={formState.homeowners.address} onChange={(e) => updateForm('homeowners', 'address', e.target.value)} required />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Goal</Form.Label>
-                  <Form.Select value={formState.homeowners.goal} onChange={(e) => updateForm('homeowners', 'goal', e.target.value)}>
-                    <option value="">Select</option>
-                    <option>Sell</option>
-                    <option>Partner</option>
-                    <option>Build and keep</option>
-                  </Form.Select>
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Timing</Form.Label>
-                  <Form.Control value={formState.homeowners.timing} onChange={(e) => updateForm('homeowners', 'timing', e.target.value)} placeholder="0-3 months, etc" />
-                </Form.Group>
-              </Col>
-              <Col md={12}>
-                <Form.Group>
-                  <Form.Label>Photo links</Form.Label>
-                  <Form.Control value={formState.homeowners.photos} onChange={(e) => updateForm('homeowners', 'photos', e.target.value)} placeholder="Drive/Dropbox links" />
-                </Form.Group>
-              </Col>
-            </Row>
-            <div className="section-actions">
-              <button className="btn-main" type="submit" disabled={submitStatus.homeowners.loading}>
-                {submitStatus.homeowners.loading ? 'Sending...' : INQUIRY_SUBMIT_LABEL}
-              </button>
-            </div>
-            {submitStatus.homeowners.message ? <p className="form-feedback">{submitStatus.homeowners.message}</p> : null}
-          </Form>
         </Container>
       </section>
 

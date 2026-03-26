@@ -27,6 +27,7 @@ export default async function handler(req, res) {
     address = '',
     goal = '',
     timing = '',
+    timeline = '',
     message = '',
     preference = '',
     checkSize = '',
@@ -36,6 +37,29 @@ export default async function handler(req, res) {
 
   const resend = new Resend(resendApiKey);
   const trimmedEmail = String(email || '').trim();
+  const resolvedTiming = String(timing || timeline || '').trim();
+  const fields = [
+    ['Source', source],
+    ['Name', name],
+    ['Email', trimmedEmail],
+    ['Phone', phone],
+    ['Address', address],
+    ['Goal', goal],
+    ['Timing', resolvedTiming],
+    ['Check size', checkSize],
+    ['Accredited', accredited],
+    ['Return preference', preference],
+    ['Photo links', photos],
+    ['Message', message],
+  ];
+  const textBody = fields
+    .filter(([label, value]) => ['Source', 'Name', 'Email'].includes(label) || String(value || '').trim())
+    .map(([label, value]) => `${label}: ${String(value || '').trim() || '-'}`)
+    .join('\n');
+  const htmlBody = fields
+    .filter(([label, value]) => ['Source', 'Name', 'Email'].includes(label) || String(value || '').trim())
+    .map(([label, value]) => formatField(label, value))
+    .join('');
 
   try {
     const { error } = await resend.emails.send({
@@ -43,34 +67,10 @@ export default async function handler(req, res) {
       to: [toEmail],
       subject: `Westwood website inquiry: ${source}`,
       replyTo: trimmedEmail || undefined,
-      text: [
-        `Source: ${source}`,
-        `Name: ${name || '-'}`,
-        `Email: ${trimmedEmail || '-'}`,
-        `Phone: ${phone || '-'}`,
-        `Address: ${address || '-'}`,
-        `Goal: ${goal || '-'}`,
-        `Timing: ${timing || '-'}`,
-        `Check size: ${checkSize || '-'}`,
-        `Accredited: ${accredited || '-'}`,
-        `Return preference: ${preference || '-'}`,
-        `Photo links: ${photos || '-'}`,
-        `Message: ${message || '-'}`,
-      ].join('\n'),
+      text: textBody,
       html: `
         <h2>New inquiry from Westwood website</h2>
-        ${formatField('Source', source)}
-        ${formatField('Name', name)}
-        ${formatField('Email', email)}
-        ${formatField('Phone', phone)}
-        ${formatField('Address', address)}
-        ${formatField('Goal', goal)}
-        ${formatField('Timing', timing)}
-        ${formatField('Check size', checkSize)}
-        ${formatField('Accredited', accredited)}
-        ${formatField('Return preference', preference)}
-        ${formatField('Photo links', photos)}
-        ${formatField('Message', message)}
+        ${htmlBody}
       `,
     });
 
