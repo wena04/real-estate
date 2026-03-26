@@ -10,6 +10,10 @@ import './HomePage.css';
 
 const LazyProjectMap = lazy(() => import('../components/projects/ProjectMap'));
 
+function projectCoverSrc(project) {
+  return `${import.meta.env.BASE_URL}${String(project.coverImage || '').replace(/^\/+/, '')}`;
+}
+
 function HomePage() {
   const heroVideoSrc = `${import.meta.env.BASE_URL}${String(siteContent.heroVideo || '').replace(/^\/+/, '')}`;
   const servicesFeatureImageSrc = `${import.meta.env.BASE_URL}assets/sections/services/services-feature.png`;
@@ -162,6 +166,56 @@ function HomePage() {
   const visibleProjects = projects.slice(0, visibleProjectCount);
   const mapPoints = useMemo(() => locations, []);
 
+  const servicesAudienceTabs = ['Homeowners', 'Investors', 'Builders'];
+  const [servicesAudience, setServicesAudience] = useState('Homeowners');
+  const servicesAudienceConfig = useMemo(
+    () => ({
+      Homeowners: {
+        programs: ['Single Family', 'ADU', 'DADU'],
+        href: '#homeowners',
+        headline: 'Increase value, simplify the process, and build with confidence.',
+        cta: 'Explore homeowner options',
+      },
+      Investors: {
+        programs: ['Townhomes'],
+        href: '#investors',
+        headline: 'Passive participation with full execution handled by Westwood.',
+        cta: 'See investor pathways',
+      },
+      Builders: {
+        programs: ['DADU', 'ADU', 'Single Family', 'Townhomes'],
+        href: '#contact',
+        headline: 'Design coordination, feasibility support, and disciplined build execution.',
+        cta: 'Talk to our team',
+      },
+    }),
+    [],
+  );
+  const servicesAudiencePrograms = servicesAudienceConfig[servicesAudience]?.programs || [];
+  const servicesAudienceProjects = useMemo(() => {
+    const filtered = projects.filter((p) => servicesAudiencePrograms.includes(p.program));
+    return filtered.length ? filtered : projects;
+  }, [servicesAudience, servicesAudiencePrograms]);
+  const servicesFeaturedProject = servicesAudienceProjects[0];
+  const servicesCandidateTiles = servicesAudienceProjects.slice(1, 4);
+  const servicesAudienceHeadline = servicesAudienceConfig[servicesAudience]?.headline || '';
+  const servicesAudienceHref = servicesAudienceConfig[servicesAudience]?.href || '#contact';
+  const servicesAudienceCta = servicesAudienceConfig[servicesAudience]?.cta || 'Contact us';
+  const servicesTileItems = useMemo(() => {
+    const baseTitles = [
+      'Design + Coordination',
+      'Build Execution',
+      'Feasibility + Strategy',
+    ];
+    return baseTitles
+      .map((title, idx) => ({
+        title,
+        href: servicesAudienceHref,
+        project: servicesCandidateTiles[idx] || servicesFeaturedProject,
+      }))
+      .filter((item) => item.project);
+  }, [servicesCandidateTiles, servicesFeaturedProject, servicesAudienceHref]);
+
   const updateForm = (section, field, value) => {
     setFormState((prev) => ({
       ...prev,
@@ -222,49 +276,67 @@ function HomePage() {
 
       <section id="services" className="section section--alt">
         <Container>
-          <div className="section-header">
-            <h2>Services</h2>
-            <p>Whether you are at concept stage or ready to build, we provide practical support at every step.</p>
-          </div>
-          <Row className="g-4 align-items-stretch services-feature-row">
-            <Col lg={7}>
-              <div className="services-feature-left">
-                <div className="services-compact-list">
-                  {serviceItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <article className="services-compact-item" key={item.title}>
-                        <span className="services-compact-icon"><Icon aria-hidden="true" /></span>
-                        <div className="services-compact-body">
-                          <h4 className="services-compact-title">{item.title}</h4>
-                          <p className="services-compact-headline">{item.headline}</p>
-                          <p className="services-compact-description">{item.description}</p>
-                          <ul className="list-clean services-compact-bullets">
-                            {item.bullets.map((bullet) => (
-                              <li key={bullet}>{bullet}</li>
-                            ))}
-                          </ul>
-                          <div className="services-compact-actions">
-                            <a className="btn-main" href={item.ctaHref}>{item.cta}</a>
-                          </div>
-                        </div>
-                      </article>
-                    );
-                  })}
+          <div className="services-showcase">
+            <div className="section-header services-showcase-header">
+              <h2>Services</h2>
+              <p>Whether you are at concept stage or ready to build, we provide practical support at every step.</p>
+            </div>
+
+            <div className="services-showcase-tabs" role="tablist" aria-label="Services by audience">
+              {servicesAudienceTabs.map((tab) => (
+                <button
+                  key={tab}
+                  type="button"
+                  role="tab"
+                  aria-selected={servicesAudience === tab}
+                  className={`services-showcase-tab${servicesAudience === tab ? ' is-active' : ''}`}
+                  onClick={() => setServicesAudience(tab)}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+
+            {servicesFeaturedProject ? (
+              <>
+                <a href={servicesAudienceHref} className="services-showcase-hero">
+                  <img
+                    className="services-showcase-hero-img"
+                    src={projectCoverSrc(servicesFeaturedProject)}
+                    alt={servicesFeaturedProject.displayName}
+                    loading="lazy"
+                  />
+                  <div className="services-showcase-hero-gradient" aria-hidden="true" />
+                  <div className="services-showcase-hero-inner">
+                    <p className="services-showcase-hero-kicker">For {servicesAudience}</p>
+                    <p className="services-showcase-hero-headline">{servicesAudienceHeadline}</p>
+                    <span className="services-showcase-hero-link">
+                      {servicesAudienceCta}
+                      <span aria-hidden="true"> →</span>
+                    </span>
+                  </div>
+                </a>
+
+                <div className="services-showcase-tiles">
+                  {servicesTileItems.map((tile) => (
+                    <a href={tile.href} className="services-showcase-tile" key={tile.title}>
+                      <img
+                        src={projectCoverSrc(tile.project)}
+                        alt={tile.project.displayName}
+                        className="services-showcase-tile-img"
+                        loading="lazy"
+                      />
+                      <div className="services-showcase-tile-gradient" aria-hidden="true" />
+                      <span className="services-showcase-tile-label">{tile.title}</span>
+                    </a>
+                  ))}
                 </div>
-              </div>
-            </Col>
-            <Col lg={5}>
-              <div className="section-media-block section-media-block--sticky">
-                <img
-                  className="section-media-image section-media-image--tall"
-                  src={servicesFeatureImageSrc}
-                  alt="Recent project aerial view"
-                  loading="lazy"
-                />
-              </div>
-            </Col>
-          </Row>
+              </>
+            ) : (
+              <p className="services-showcase-empty">No projects to preview yet.</p>
+            )}
+          </div>
+
           <p className="service-closing-line">
             No matter where you are in the process - idea, design, or ready to build - we meet you there and take you forward.
           </p>
