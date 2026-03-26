@@ -136,20 +136,6 @@
   border-bottom: none;
 }
 
-.footer-contact-copy {
-  padding: 0.32rem 0.65rem;
-  border-radius: 8px;
-  font-size: 0.78rem;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #c6ced5;
-  color: #15181c;
-}
-
-.footer-contact-copy:hover {
-  color: #101418;
-  background: #fff;
-  border-color: #7b8f9f;
-}
 
 .footer-contact-line--office {
   align-items: flex-start;

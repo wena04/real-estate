@@ -13,7 +13,6 @@ function Footer() {
     message: '',
   });
   const [submitStatus, setSubmitStatus] = useState({ loading: false, message: '' });
-  const [copiedField, setCopiedField] = useState('');
 
   const updateField = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -37,16 +36,6 @@ function Footer() {
     }
   };
 
-  const handleCopy = async (key, value) => {
-    if (!value) return;
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopiedField(key);
-      window.setTimeout(() => setCopiedField((prev) => (prev === key ? '' : prev)), 1600);
-    } catch {
-      setCopiedField('');
-    }
-  };
 
   return (
     <footer className="site-footer">
@@ -141,26 +130,12 @@ function Footer() {
                   <span className="footer-contact-kicker">Phone</span>
                   <div className="footer-contact-line">
                     <a href={`tel:${contact.phoneHref}`}>{contact.phone}</a>
-                    <button
-                      type="button"
-                      className="btn-ghost footer-contact-copy"
-                      onClick={() => handleCopy('phone', contact.phone)}
-                    >
-                      {copiedField === 'phone' ? 'Copied' : 'Copy'}
-                    </button>
                   </div>
                 </div>
                 <div className="footer-contact-aside-block">
                   <span className="footer-contact-kicker">Email</span>
                   <div className="footer-contact-line">
                     <a href={`mailto:${contact.email}`}>{contact.email}</a>
-                    <button
-                      type="button"
-                      className="btn-ghost footer-contact-copy"
-                      onClick={() => handleCopy('email', contact.email)}
-                    >
-                      {copiedField === 'email' ? 'Copied' : 'Copy'}
-                    </button>
                   </div>
                 </div>
                 <div className="footer-contact-aside-block footer-contact-aside-block--office">
