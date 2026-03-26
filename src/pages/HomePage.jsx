@@ -382,9 +382,6 @@ function HomePage() {
               </Suspense>
             </div>
           </div>
-          <div className="section-actions projects-section-cta">
-            <a className="btn-main" href="#contact">{CONTACT_CTA_LABEL}</a>
-          </div>
         </Container>
       </section>
 
