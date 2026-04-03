@@ -354,7 +354,7 @@ function HomePage() {
                 key={project.slug}
                 onMouseEnter={() => setSelectedProjectSlug(project.slug)}
               >
-                <ProjectCard project={project} showAction={false} />
+                <ProjectCard project={project} />
               </Col>
             ))}
           </Row>
