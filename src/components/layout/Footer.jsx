@@ -38,6 +38,37 @@ function Footer() {
 
 
   return (
+    <>
+      <div className="footer-associations-strip">
+        <Container>
+          <div className="footer-associations-logos" aria-label="Professional membership organizations">
+            <a
+              className="footer-association-link"
+              href="https://www.mbaks.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${import.meta.env.BASE_URL}assets/associations/mba-king-snohomish-member.png`}
+                alt="MBA member — Master Builders Association of King and Snohomish Counties"
+                loading="lazy"
+              />
+            </a>
+            <a
+              className="footer-association-link"
+              href="https://www.nahb.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${import.meta.env.BASE_URL}assets/associations/nahb-member.png`}
+                alt="National Association of Home Builders"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </Container>
+      </div>
     <footer className="site-footer">
       <Container>
         <div className="footer-grid">
@@ -164,39 +195,10 @@ function Footer() {
           </Row>
         </div>
 
-        <div className="footer-associations">
-          <p className="footer-associations-label">Professional associations</p>
-          <div className="footer-associations-logos">
-            <a
-              className="footer-association-link"
-              href="https://www.mbaks.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={`${import.meta.env.BASE_URL}assets/associations/mba-king-snohomish-member.png`}
-                alt="MBA member — Master Builders Association of King and Snohomish Counties"
-                loading="lazy"
-              />
-            </a>
-            <a
-              className="footer-association-link"
-              href="https://www.nahb.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={`${import.meta.env.BASE_URL}assets/associations/nahb-member.png`}
-                alt="National Association of Home Builders"
-                loading="lazy"
-              />
-            </a>
-          </div>
-        </div>
-
         <div className="footer-bottom">© {new Date().getFullYear()} Westwood Homes</div>
       </Container>
     </footer>
+    </>
   );
 }
 
