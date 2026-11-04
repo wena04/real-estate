@@ -195,7 +195,10 @@ function Footer() {
           </Row>
         </div>
 
-        <div className="footer-bottom">© {new Date().getFullYear()} Westwood Homes</div>
+        <div className="footer-bottom">
+          <span>© {new Date().getFullYear()} Westwood Homes</span>
+          <span className="footer-credit">Initial prototype developed by Anthony Wen</span>
+        </div>
       </Container>
     </footer>
     </>
