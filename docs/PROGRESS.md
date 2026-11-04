@@ -17,8 +17,9 @@ Last updated: 2026-11-03 (America/Los_Angeles)
 - GitHub Pages branch publishing is now set to workflow-managed mode. The Pages
   deployment workflow, `gh-pages` dependency, subpath base, and `build:gh` /
   `deploy:gh` scripts were removed. The redundant generated Pages run was cancelled.
-- Dependency maintenance is being published to both `main` and `mvp` with this
-  progress update; see versions and verification below.
+- Dependency maintenance was pushed to both `main` and `mvp` in `0e5515d`.
+  Vercel reported successful deployment, and the custom domain served the exact
+  verified Vite 8 script asset (`index-BWk6Hv0G.js`).
 
 ## Kevin's ownership handoff
 
@@ -163,9 +164,13 @@ were reviewed. The simple existing Vite configuration required no API changes.
   endpoints, which are provided by hosting rather than the local frontend server.
 - npm reported an optional `fsevents` install-script approval notice on this Mac;
   both builds and the clean client install passed without broadening script permissions.
-- Client archive integrity, asset references, exclusions, known-secret checks,
-  Desktop copy checksums and GitHub upload digests are checked when refreshing
-  the handoff release. Build output and installed dependencies stay out of the ZIP.
+- Refreshed client archive passed integrity, asset-reference, exclusion and
+  known-secret checks. Its 120 files include the updated manifests/lockfile;
+  installed dependencies and build output were removed before packaging.
+- Both Desktop copies were refreshed and their checksums matched the originals.
+- GitHub release assets were replaced successfully. GitHub SHA-256 digests match
+  the refreshed originals and Desktop copies; release notes list the upgraded
+  dependencies and current ZIP checksum.
 
 ## Remaining client cutover work
 
