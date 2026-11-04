@@ -1,206 +1,201 @@
 # Westwood Homes Website Progress
 
-Last updated: 2026-03-26
+Last updated: 2026-11-03 (America/Los_Angeles)
 
-## Current Status
-- Core MVP website is implemented and deploys on Vercel.
-- Production branch is `mvp`.
-- Inquiry backend is active through `api/inquiry.js` (Resend).
-- Client review branches are published for Vercel Preview deployments (see “Vercel: Preview vs Production”).
+## Current status
 
-## Recent commits / changelog (high level)
+- The website is a React/Vite single-page marketing site with project cards,
+  a Leaflet map, homeowner/services content, investor signup, and footer contact.
+- There are two rendered inquiry forms: investor signup and footer contact.
+  `api/inquiry.js` also accepts structured homeowner inquiry fields.
+- Hosting is on Vercel. The existing production branch is documented as `mvp`;
+  its account-level setting has not been independently inspected because the
+  connector still requires authorization for the existing Vercel team.
+- `main` was fast-forwarded to `mvp`, and both branches received `0150373`
+  (GitHub Pages retirement and prototype credit). GitHub reported a successful
+  Vercel deployment, and the public site served the credit.
+- GitHub Pages branch publishing is now set to workflow-managed mode. The Pages
+  deployment workflow, `gh-pages` dependency, subpath base, and `build:gh` /
+  `deploy:gh` scripts were removed. The redundant generated Pages run was cancelled.
+- Dependency maintenance is being published to both `main` and `mvp` with this
+  progress update; see versions and verification below.
 
-- `e6a5170` **ui: remove footer contact copy buttons**
-  - Removed the phone/email **Copy** buttons from the footer contact panel to reduce UI clutter.
-  - Files: `src/components/layout/Footer.jsx`, `src/components/layout/Footer.css`
-- `887e3be` **demo: v3 client draft**
-  - Consolidated the latest homepage layout work into a shareable draft build for client review (used for `v3` preview branches).
-  - Files: `src/pages/HomePage.jsx`, `src/pages/HomePage.css`, `src/components/layout/Footer.jsx`, `src/components/layout/Footer.css`
-- `936dfbd` **ui: left-align contact card, softer gray panel, tighter layout**
-  - Tightened contact form spacing and improved readability and alignment.
-  - Files: `src/pages/HomePage.jsx`, `src/pages/HomePage.css`
-- `ef5c0c6` **fix: contact Get directions button uses white label text**
-  - Fixed link/button styling specificity so “Get directions” stays readable.
-  - Files: `src/pages/HomePage.css`
-- `c08a714` **fix: remove duplicate list markers on custom bullet rows**
-  - Fixed double-bullet rendering for compact bullet lists.
-  - Files: `src/pages/HomePage.css`
-- `17d41b8` **revert: restore Services to full-text two-column layout**
-  - Reverted the Services section back to the full content layout (kept original wording).
-  - Files: `src/pages/HomePage.jsx`, `src/pages/HomePage.css`
-- `132da2c` **chore: add project card taglines and section images**
-  - Added `cardTagline` fields for project cards and introduced section images for Services/Investors.
-  - Files: `src/data/projects.json`, `public/assets/sections/services/services-feature.png`, `public/assets/sections/investors/investors-feature.png`
-- `71d55ae` **ui: apply tabbed showcase layout to Services**
-  - Implemented (later reverted) a tabbed/feature Services presentation experiment.
-  - Files: `src/pages/HomePage.jsx`, `src/pages/HomePage.css`
-- `0c461d4` **ui: unify contact section into single card with footer strip**
-  - Unified contact UI into a single card with a compact details strip.
-  - Files: `src/pages/HomePage.jsx`, `src/pages/HomePage.css`
-- `838924f` **ui: restructure homepage sections to reduce chunkiness**
-  - Overall spacing/layout refinement to make sections easier to scan.
-  - Files: `src/pages/HomePage.jsx`, `src/pages/HomePage.css`
-- `3783e90` **ui: keep project card titles default color**
-  - Adjusted project card title color treatment for consistency.
-  - Files: `src/components/projects/ProjectCard.css`
-- `90c639f` **ui: use red tagline as project card title**
-  - Experimented with using the red tagline as the project card title (later superseded by styling updates).
-  - Files: `src/components/projects/ProjectCard.jsx`, `src/components/projects/ProjectCard.css`
+## Kevin's ownership handoff
 
-## Project Intent
+### Accounts and approach agreed with the owner
 
-Build a polished, modern frontend MVP for Westwood Homes (Bellevue/Seattle area) that:
+- Kevin's account/contact email is `Kevin@westwoodnw.com`.
+- Kevin has no coding experience. The package includes beginner Mac setup,
+  Homebrew installation, Git/Node.js/GitHub CLI, GitHub Desktop, browser sign-ins,
+  and guidance for opening the extracted source in Muse or another agent.
+- Muse is assumed to be installed already. No specific Muse capabilities have
+  been verified; the guide includes a manual/agent-workspace fallback.
+- The client will create a fresh private GitHub repository and a new Vercel
+  project in his own accounts. Use `main` in the new repo and Vercel project.
+- Extract the prepared ZIP and push its contents at the repository root with
+  fresh Git history. Do not fork, mirror, or transfer this development repository.
+- Kevin needs a client-controlled Resend account, a verified sender domain, an
+  API key stored server-side in Vercel, and confirmed delivery to his inbox.
+- Keep the current Vercel project/site available until the replacement, email,
+  domain assignment, HTTPS and redirects are verified. Delete the old project
+  only after acceptance; it is not a prerequisite for the new setup.
 
-- feels premium and easy to scan
-- showcases projects with interactive browsing
-- supports clear contact conversion
-- is easy for future AI/dev contributors to continue
+### Client deliverables
 
-## Current Product Direction
+- Local source package: `_local/client-handoff/westwood-homes/`.
+- Send only `START-HERE.md` and `westwood-homes.zip` to Kevin. The ZIP also contains
+  `HANDOFF.md`, `START-HERE.md`, `README.md`, source, API, lockfile and 90 media assets.
+- Desktop copies: `~/Desktop/START-HERE.md` and `~/Desktop/westwood-homes.zip`.
+- GitHub release: https://github.com/wena04/real-estate/releases/tag/client-handoff-2026-11-03
+- Both files are attached to that release. The ZIP exceeds GitHub's ordinary
+  Git-file size limit, so it is a release asset, not a committed repository file.
+- GitHub's automatically generated Source code archives are different from the
+  prepared `westwood-homes.zip` and contain the development repository snapshot.
+- The client ZIP excludes this progress document, Git history, private migration
+  notes, local account links/settings, actual environment files/keys, dependencies
+  and build output. `.env.example` contains safe placeholders only.
+- By explicit request, the public footer says: “Initial prototype developed by
+  Anthony Wen.” This is the intentional exception to removal of personal references.
+- The 120-file ZIP contains project photos, logos, association badges, section
+  images and the hero video. The client video was renamed `home-hero.mp4`, with
+  the corresponding content path updated. Unused legacy components were omitted.
+- ZIP archives are ignored by Git and Vercel inside the prepared client package.
 
-- **Style:** modern black/charcoal (minimal, professional)
-- **Architecture:** React + Vite + React Bootstrap (single-page sections)
-- **Content model:** JSON-driven (`src/data/`)
-- **Assets:** organized in `public/assets/`
-- **Map:** Leaflet + OpenStreetMap with custom markers
-- **Inquiries:** Vercel serverless endpoint sends inquiry emails
-- **Deployment target:** Vercel previews/production, GitHub Pages optional for archived demo
+### Receiving-agent instructions
 
-## Latest Repo Scan Snapshot
+- `HANDOFF.md` starts with a ChatGPT-specific instruction to discover/connect
+  GitHub, Vercel, Resend and Squarespace plugins/MCP, guide Kevin through approvals,
+  verify access, then continue setup. Ordinary chat may lack local file/shell access.
+- Official remote Resend MCP endpoint: `https://mcp.resend.com/mcp`.
+- The Squarespace plugin tools inspected here do not expose DNS management;
+  the receiving agent must check its own tools and use the exact dashboard if needed.
+- Set Require Password off in Kevin's new Vercel project. Vercel Authentication
+  is separate; verify public production URLs while signed out without bypass tokens.
+- Troubleshooting covers CLI upload errors, wrong production branches, unpushed
+  changes, login gates, Resend test-sender restrictions, environment scopes,
+  local frontend-only servers, delivery versus API acceptance, and cached DNS.
 
-Updated after a fresh repo pass, including deployment/config files and docs.
+## Domain and DNS facts checked
 
-- Vite base path is environment-aware in `vite.config.js`:
-  - default (`npm run build`) -> `/` (Vercel)
-  - GitHub Pages (`npm run build:gh`) -> `/real-estate/`
-- `package.json` includes dual-build scripts:
-  - `build`
-  - `build:gh`
-  - `deploy:gh`
-- GitHub Pages workflow (`.github/workflows/deploy.yml`) builds with `build:gh` on `main`
-- Backend inquiry endpoint exists in:
-  - `api/inquiry.js`
-- Frontend submit helper exists in:
-  - `src/utils/sendInquiry.js`
+### Ownership and provider
 
-## Key Decisions Already Made
+- Public RDAP confirms registrar Squarespace Domains II LLC.
+- The user confirmed Kevin controls the domain in Squarespace using his email.
+  Registrar ownership transfer is unnecessary for the chosen hosting migration.
+- Domain dashboard: https://account.squarespace.com/domains/managed/westwoodnw.com
+- Exact DNS page: https://account.squarespace.com/domains/managed/westwoodnw.com/dns/dns-settings
+- Registration data listed expiration November 25, 2026; Kevin should confirm
+  actual renewal/auto-renew and billing in his account.
+- Existing nameservers are `ns-cloud-b1.googledomains.com` through
+  `ns-cloud-b4.googledomains.com`; keep registration/DNS at Squarespace.
+- Public HTTPS checks returned a 307 root-to-`www` redirect and a 200 on `www`,
+  both identifying Vercel. Preserve the current canonical `www` behavior.
 
-- Use display names for projects (no public full addresses on listings/cards)
-- Merge all major pages into one home experience with section anchors
-- Keep CTA/contact behavior consistent in-page
-- Keep project cards image-first without project detail page navigation
-- Add interactive card hover effects where appropriate
-- Keep non-click informational cards visually distinct from button-like elements
+### Signed-in DNS inspection
 
-## Current Implementation Status
+After the user signed in, the DNS page was inspected read-only. One preset and
+18 custom records were visible. No DNS values or presets were changed.
 
-### Done
+- Preset: Squarespace Domain Connect; CNAME `_domainconnect` points to
+  `_domainconnect.domains.squarespace.com`, TTL 1 hour. Keep it.
+- No website-default preset or Google Workspace preset was visible. Google email
+  records are custom records, not a preset to delete.
+- Custom records below use TTL 4 hours:
+  - A `@` → `216.198.79.1`.
+  - CNAME `www` → `51ebdff734fa53b6.vercel-dns-017.com`.
+  - TXT `_vercel` → existing verification challenge for `www`.
+  - Five MX records at `@` for Google (`aspmx` priority 1, `alt1`/`alt2` priority 5,
+    `alt3`/`alt4` priority 10).
+  - TXT `google._domainkey` with the existing Google DKIM public key.
+  - CNAME `tr4bdwokp35p` → `gv-uxks62j7rb545b.dv.googlehosted.com`.
+  - TXT `_dmarc` → `v=DMARC1; p=none;`.
+  - MX `send` → `feedback-smtp.us-east-1.amazonses.com`, priority 10.
+  - TXT `send` → `v=spf1 include:amazonses.com ~all`.
+  - TXT `resend._domainkey` with the existing Resend DKIM public key.
+  - CNAME `test` → `ext-cust.squarespace.com`.
+  - Two TXT values at `_certum` and one TXT at `verify`; continued purpose unknown.
 
-- Single-page navigation implemented via top tab anchors:
-  - `Home`
-  - `Homeowners`
-  - `Services`
-  - `Investors`
-  - `Projects`
-  - `Contact`
-- Homeowners/Services/Investors content consolidated into their single sections.
-- Contact moved into the footer:
-  - Footer includes contact form (General Contact) + phone/email + office address + explicit “Get directions”.
-  - Copy buttons for phone/email were removed (keep the contact area clean).
-- Project section supports:
-  - map + cards in one section
-  - multi-select Program/Status filters
-  - filter hint text and selected-count indicators
-  - reset filters
-  - results count
-  - limited initial card render with "Show more projects" (performance)
-- Custom map pin + popup styling implemented
-- Project card hover overlay preserved (without detail-page CTA)
-- Iconography added across concept/service cards
-- Section spacing, hero sizing, and typography tuned for visual rhythm
-- Serif heading stack applied for a more premium editorial tone
-- Inquiry email backend connected (Resend via Vercel function)
-- `.gitignore` updated for local source asset dump files
-- `.vercelignore` added to prevent oversized/local files from being uploaded by Vercel CLI
-- Removed obsolete multi-page files and unused page-level CSS/components
-- Sections updated to “builder homepage” rhythm:
-  - Services/Investors/Homeowners use a large section image above the copy block.
-  - Projects section layout kept as-is (header + grid + map); the Projects intro now spans the full container width (override `#projects .section-header { max-width: none; }`).
+Use the destination Vercel project's required A/CNAME/verification values. Keep a
+working value if unchanged; replace obsolete routing selectively. Preserve Google
+email and unrelated records. Compare the new Resend account's required records,
+coordinate any DKIM/API-key cutover and test receipt. Do not delete all custom
+records or the Domain Connect preset. The handoff contains this exact inventory
+and a keep/replace decision table. Snapshot the full current values at cutover.
 
-### In Progress / Active Focus
+The existing source Vercel project/team assignment remains an authenticated check
+pending team authorization. Public DNS alone does not prove that assignment.
 
-- Content polish and conversion tuning:
-  - refine section copy for client tone
-  - optional contact reassurance text near forms
-- Deployment workflow hardening:
-  - confirm production branch policy in Vercel
-  - maintain stable "v0" archive strategy if needed
+## Dependency update — 2026-11-03
 
-### Pending / Next Suggested Steps
+All 13 direct packages were checked against npm's latest stable dist-tags.
+Seven packages were upgraded; the other six were already current. Compatible
+transitive updates were resolved and the root/client lockfiles synchronized.
 
-1. **Finalize deployment strategy**
-   - Confirm Vercel Production Branch is set to `mvp` (not `main`)
-   - Push latest MVP code to `mvp` and verify production deployment source branch
-2. **Versioned client review flow**
-   - Create version branches (`v1`, `v2`, `v3`, etc.)
-   - Share Vercel Preview deployment links for review
-3. **Content polish**
-   - Optional: refine project descriptions and section copy with stakeholder-reviewed text
-   - Optional: add validation/UX copy to reduce incomplete submissions
-4. **QA and accessibility**
-   - Keyboard navigation check for map and filter interactions
-   - Contrast audit on all themed components
+| Package | Before | Updated |
+| --- | --- | --- |
+| React / React DOM | 19.2.4 | 19.3.1 |
+| React Icons | 5.5.0 | 5.7.0 |
+| React Router DOM | 7.13.1 | 7.18.5 |
+| Resend | 6.9.4 | 6.37.0 |
+| Vite | 7.3.1 | 8.3.5 |
+| Vite React plugin | 5.1.4 | 6.2.1 |
 
-## Vercel Session Notes (Current)
+Already latest: `@vercel/analytics` 2.0.1, `@vercel/speed-insights` 2.0.0,
+Bootstrap 5.3.8, Leaflet 1.9.4, React Bootstrap 2.10.10, React Leaflet 5.0.0.
+The package engine requirement is now explicitly Node.js >=22.12.0; the beginner
+Mac guide installs Node.js 24. Vite's migration guide and React plugin compatibility
+were reviewed. The simple existing Vite configuration required no API changes.
 
-- User completed:
-  - `vercel login` (successful)
-  - `vercel link` to existing project (successful)
-- User encountered:
-  - `write EPIPE` during local CLI deploy
-  - `File size limit exceeded (100 MB)` due to local large archive in repo root
-- Mitigation completed:
-  - Added `.vercelignore` for large local archives/source dump files
-- Recommended flow:
-  - prefer Git push deploys via Vercel Git integration over local `vercel --prod` CLI for this repo
+### Verification
 
-## Vercel: Preview vs Production
+- Root install/update completed; npm reported zero vulnerabilities.
+- `npm ls --depth=0` shows the expected direct versions without dependency errors.
+- Production builds passed for the root project and the clean client package.
+- Clean client `npm ci` passed using the synchronized lockfile.
+- Browser checks on the built site passed: project expansion, Leaflet interaction,
+  contact navigation, image loading, playable video and footer credit.
+- Two visible forms were confirmed: investor signup and footer contact. Earlier
+  handoff text referring to a third homeowner form has been corrected.
+- Updated Resend SDK tested with mocked transport: three accepted inquiry source
+  payloads, serialized reply-to, missing-key handling, method rejection and provider
+  rejection all passed. No live inquiry email was sent during this maintenance.
+- Local static preview logs include expected missing Vercel Analytics/Speed Insights
+  endpoints, which are provided by hosting rather than the local frontend server.
+- npm reported an optional `fsevents` install-script approval notice on this Mac;
+  both builds and the clean client install passed without broadening script permissions.
+- Client archive integrity, asset references, exclusions, known-secret checks,
+  Desktop copy checksums and GitHub upload digests are checked when refreshing
+  the handoff release. Build output and installed dependencies stay out of the ZIP.
 
-### Production (official site)
-- **Branch:** `mvp`
-- **Domain:** `westwoodnw.com` / `www.westwoodnw.com` (Vercel “Production” deployment)
+## Remaining client cutover work
 
-### Client review / draft previews
-- Create a branch like `v3` (or `v4`, etc.) and push it to GitHub.
-- Vercel will generate a **Preview Deployment URL** for that branch.
-- Share the Preview URL with the client.
+1. Kevin creates/signs into his GitHub, Vercel and Resend accounts.
+2. His agent extracts the source, creates the clean private repo and pushes `main`.
+3. Deploy his new Vercel project and configure client-owned Resend settings.
+4. Confirm successful live email receipt through both visible forms.
+5. Coordinate any Vercel cross-team verification and apply only required website
+   DNS / Resend changes through Kevin's existing Squarespace account.
+6. Confirm HTTPS, redirects, production updates, renewal billing and public access.
+7. After acceptance, retire the previous Vercel project and personal credentials.
 
-### If a Preview URL asks for login
-That’s Vercel **Deployment Protection** for Preview deployments.
+No client account migration, DNS cutover or new-client ownership transfer has
+been performed. The handoff is prepared; the owner actions above remain.
 
-In Vercel:
-- Project → Settings → Deployment Protection
-- Disable protection for **Preview** deployments (leave Production protected if desired)
-- Redeploy the branch (`v3`) so the new setting applies
+## Useful paths
 
-## Team/AI Handoff Notes
+- Main page: `src/pages/HomePage.jsx`, `src/pages/HomePage.css`.
+- Header/footer: `src/components/layout/`.
+- Map/cards: `src/components/projects/`.
+- Content: `src/data/siteContent.json`, `projects.json`, `locations.json`.
+- Media: `public/assets/`.
+- Email handler/client helper: `api/inquiry.js`, `src/utils/sendInquiry.js`.
+- Root README: current Vercel-only build/deployment instructions.
 
-- Prefer editing JSON content (`src/data/`) over hardcoding.
-- Avoid exposing internal/full addresses on public project cards.
-- Keep project cards image-forward and lightweight (no project detail route).
-- Keep one-page section-anchor navigation behavior intact.
-- Keep contact copy/call/directions actions in the footer contact section.
-- Preserve responsive behavior when modifying card grids/hero sections.
+## Previously resolved deployment problems
 
-## Important Paths
-
-- App routes/layout: `src/App.jsx`
-- Global theme/tokens: `src/index.css`
-- Home page: `src/pages/HomePage.jsx`, `src/pages/HomePage.css`
-- Navbar/footer (anchor nav): `src/components/Navbar.jsx`, `src/components/Footer.jsx`
-- Projects map component: `src/components/ProjectMap.jsx`
-- Inquiry backend: `api/inquiry.js`
-- Inquiry frontend utility: `src/utils/sendInquiry.js`
-- Data: `src/data/siteContent.json`, `src/data/projects.json`, `src/data/locations.json`
-
-...
+- CLI deploys encountered `write EPIPE` and an oversized local archive upload.
+  Prefer Vercel Git integration and keep handoff/raw archives outside app source.
+- Earlier project iterations used a GitHub Pages subpath and versioned preview
+  branches. Pages publishing has now been retired; new client production uses `main`.
+- Preview authentication and password gates are distinct from ordinary site routing.
+  Verify the intended public URLs while signed out, including inquiry access.

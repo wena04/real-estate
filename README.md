@@ -1,7 +1,7 @@
 # Westwood Homes Website
 
 A single-page marketing website with project photos, an interactive project map,
-and homeowner, investor, and general inquiry forms.
+homeowner/services content, investor signup, and a general contact form.
 
 ## Development
 
